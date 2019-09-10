@@ -17,7 +17,7 @@
       location="hello-application" />
    <launcher name="hello-rcp">
       <win useIco="true">
-         <ico path="/hello-application/icons/sts.ico"/>
+         <ico path="/hello-application/icons/ggts.ico"/>
          <bmp/>
       </win>
    </launcher>
