@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="hello_application"
+         point="org.eclipse.core.runtime.products">
+      <product
+            name="RCP Application"
+            application="org.eclipse.ui.ide.workbench">
+         <property
+               name="windowImages"
+               value="icons/sts4-16.png,icons/sts4-32.png,icons/sts4-48.png,icons/sts4-64.png,icons/sts4-128.png,icons/sts4-256.png">
+         </property>
+         <property
+               name="appName"
+               value="RCP Application">
+         </property>
+      </product>
+   </extension>
+
+</plugin>
