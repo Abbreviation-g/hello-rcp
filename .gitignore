@@ -24,5 +24,6 @@ hs_err_pid*
 .project
 .settings
 target
+bin
 .classpath
 /hello-rcp/com.my.hello.exteranl.lib/.gitignore
