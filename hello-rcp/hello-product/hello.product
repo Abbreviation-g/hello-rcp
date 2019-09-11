@@ -15,15 +15,15 @@
 
    <splash
       location="hello-application" />
-   <launcher name="hello-rcp">
+   <launcher name="hello-application">
       <win useIco="true">
-         <ico path="/hello-product/ggts.ico"/>
-         <bmp
-            winSmallLow="/hello-rcp/hello-application/splash.bmp"/>
+         <ico path="launch/sts.ico"/>
+         <bmp/>
       </win>
    </launcher>
 
    <vm>
+      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
    </vm>
 
    <plugins>
