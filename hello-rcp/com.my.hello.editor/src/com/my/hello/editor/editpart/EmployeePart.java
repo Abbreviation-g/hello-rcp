@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
 
+import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
 import com.my.hello.editor.figure.EmployeeFigure;
 import com.my.hello.editor.model.Employee;
 import com.my.hello.editor.model.Node;
@@ -19,7 +21,7 @@ public class EmployeePart extends AppAbstractEditpart {
 
 	@Override
 	protected void createEditPolicies() {
-		
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppEditDeletePolicy());
 	}
 
 	protected void refreshVisuals() {
@@ -38,6 +40,8 @@ public class EmployeePart extends AppAbstractEditpart {
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
+		} else if(evt.getPropertyName().equals(Node.PROPERTY_DLETE)){
+			refreshVisuals(); 
 		}
 	}
 }

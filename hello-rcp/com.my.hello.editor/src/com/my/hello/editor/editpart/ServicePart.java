@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 
+import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
 import com.my.hello.editor.editpolicy.AppEditLayoutPolicy;
 import com.my.hello.editor.figure.ServiceFigure;
 import com.my.hello.editor.model.Node;
@@ -21,6 +22,7 @@ public class ServicePart extends AppAbstractEditpart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppEditDeletePolicy());
 	}
 
 	protected void refreshVisuals() {
@@ -29,6 +31,7 @@ public class ServicePart extends AppAbstractEditpart {
 		figure.setName(model.getName());
 		figure.setEtage(model.getEtage());
 		figure.setLayout(model.getLayout());
+		refreshChildren();
 	}
 	public List<Node> getModelChildren(){
 		return ((Service)getModel()).getChildren();
@@ -38,6 +41,8 @@ public class ServicePart extends AppAbstractEditpart {
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
+		} else if(evt.getPropertyName().equals(Node.PROPERTY_DLETE)){
+			refreshVisuals(); 
 		}
 	}
 }

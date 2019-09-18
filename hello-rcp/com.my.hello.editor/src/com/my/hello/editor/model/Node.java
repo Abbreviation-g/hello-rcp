@@ -10,6 +10,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 public class Node {
 	private PropertyChangeSupport listeners;
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
+	public static final String PROPERTY_DLETE = "NodeDelete";
 
 	private String name;
 	private Rectangle layout;
@@ -53,12 +54,16 @@ public class Node {
 
 	public boolean addChild(Node child) {
 		child.setParent(this);
-		return this.children.add(child);
+		boolean result = this.children.add(child);
+		getListeners().firePropertyChange(PROPERTY_DLETE, null, child);
+		return result;
 	}
 
 	public boolean removeChild(Node child) {
 		child.setParent(null);
-		return this.children.remove(child);
+		boolean result = this.children.remove(child);
+		getListeners().firePropertyChange(PROPERTY_DLETE, child, null);
+		return result;
 	}
 
 	public List<Node> getChildren() {
