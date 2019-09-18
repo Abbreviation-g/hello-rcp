@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -87,13 +88,23 @@ public class JoshTestViewPart extends ViewPart implements ISelectionListener, IS
 
 	@Override
 	public void setFocus() {
+		text.setText("");
+		for(String line:Platform.getCommandLineArgs()) {
+			text.append(line);
+			text.append("\n");
+		}
+		for(String line: Platform.getApplicationArgs()) {
+			text.append(line);
+			text.append("\n");
+		}
 		try {
-			URL url = new URL("https://fanyi.baidu.com");
+			URL url = new URL("https://www.baidu.com");
 			InputStream inputStream = url.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				text.append(line);
+				text.append("\n");	
 			}
 			reader.close();
 		} catch (MalformedURLException e) {

@@ -27,6 +27,20 @@
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
+		        <groupId>org.eclipse.tycho</groupId>
+		            <artifactId>tycho-packaging-plugin</artifactId>
+		             <version>${tycho-version}</version>
+		             <executions>
+		              <execution>
+		                <phase>package</phase>
+		                <id>package-feature</id>
+		                    <configuration>
+		                        <outputDirectory>C:\work\cdt-development\target</outputDirectory>
+		                    </configuration>
+		            </execution>
+		        </executions>
+		    </plugin>
+			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho-version}</version>
@@ -49,5 +63,7 @@
 		<module>hello-feature</module>
     	<module>hello-view</module>
     	<module>com.my.hello.exteranl.lib</module>
+
+    	<module>com.my.hello.editor</module>
 	</modules>
 </project>

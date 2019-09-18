@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.my.hello.editor.ui.MyGraphicalEditor"
+            contributorClass="com.my.hello.editor.ui.MyGraphicalEditorActionBarContributor"
+            default="false"
+            id="com.my.hello.editor.ui.mygraphicaleditor"
+            name="MyGraphicalEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Hello">
+            <command
+                  commandId="com.my.hello.editor.command1"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.my.hello.editor.handler.OpenEditorHandler"
+            id="com.my.hello.editor.command1"
+            name="Open Editor">
+      </command>
+   </extension>
+
+</plugin>
