@@ -40,8 +40,6 @@ public class EmployeePart extends AppAbstractEditpart {
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
-		} else if(evt.getPropertyName().equals(Node.PROPERTY_DLETE)){
-			refreshVisuals(); 
 		}
 	}
 }

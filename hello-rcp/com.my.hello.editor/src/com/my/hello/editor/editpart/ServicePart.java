@@ -31,7 +31,6 @@ public class ServicePart extends AppAbstractEditpart {
 		figure.setName(model.getName());
 		figure.setEtage(model.getEtage());
 		figure.setLayout(model.getLayout());
-		refreshChildren();
 	}
 	public List<Node> getModelChildren(){
 		return ((Service)getModel()).getChildren();
@@ -42,7 +41,7 @@ public class ServicePart extends AppAbstractEditpart {
 		if(evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
 		} else if(evt.getPropertyName().equals(Node.PROPERTY_DLETE)){
-			refreshVisuals(); 
+			refreshChildren();
 		}
 	}
 }
