@@ -1,11 +1,24 @@
 package com.my.hello.editor.ui;
 
+import java.util.Arrays;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.KeyStroke;
+import org.eclipse.gef.MouseWheelHandler;
+import org.eclipse.gef.MouseWheelZoomHandler;
+import org.eclipse.gef.editparts.ScalableRootEditPart;
+import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gef.ui.actions.GEFActionConstants;
+import org.eclipse.gef.ui.actions.ZoomInAction;
+import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.actions.ActionFactory;
 
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.model.Employee;
@@ -33,6 +46,19 @@ public class MyGraphicalEditor extends GraphicalEditor {
 		super.configureGraphicalViewer();
 		GraphicalViewer viewer = getGraphicalViewer();
 		viewer.setEditPartFactory(new AppEditpartFactory());
+
+		ScalableRootEditPart rootEditPart = new ScalableRootEditPart();
+		viewer.setRootEditPart(rootEditPart);
+		
+		ZoomManager manager = rootEditPart.getZoomManager();
+		getActionRegistry().registerAction(new ZoomInAction(manager));
+		getActionRegistry().registerAction(new ZoomOutAction(manager));
+		
+		double[] zoomLevels = new double[] {0.25,0.5,0.75,1.0,1.5,2.0,2.5,3.0,4.0,5.0,10.0,20.0};
+		manager.setZoomLevels(zoomLevels);
+		
+		manager.setZoomLevelContributions(Arrays.asList(ZoomManager.FIT_ALL,ZoomManager.FIT_HEIGHT,ZoomManager.FIT_WIDTH));
+		
 	}
 
 	@Override
@@ -91,4 +117,11 @@ public class MyGraphicalEditor extends GraphicalEditor {
 
 	}
 
+	@Override
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
+		if(type == ZoomManager.class) {
+			return ((ScalableRootEditPart)getGraphicalViewer().getRootEditPart()).getZoomManager();
+		}
+		return super.getAdapter(type);
+	}
 }
