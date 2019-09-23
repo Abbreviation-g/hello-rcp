@@ -15,7 +15,7 @@ public abstract class AppAbstractEditpart extends AbstractGraphicalEditPart impl
 	
 	@Override
 	public void deactivate() {
-		super.deactivate();
 		((Node)getModel()).removePropertyChangeListener(this);
+		super.deactivate();
 	}
 }

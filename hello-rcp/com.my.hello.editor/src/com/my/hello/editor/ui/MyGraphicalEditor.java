@@ -18,7 +18,6 @@ import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.actions.ActionFactory;
 
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.model.Employee;

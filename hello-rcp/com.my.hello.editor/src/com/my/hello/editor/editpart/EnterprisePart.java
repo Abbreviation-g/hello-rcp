@@ -34,14 +34,16 @@ public class EnterprisePart extends AppAbstractEditpart {
 	}
 
 	public List<Node> getModelChildren() {
-		return ((Enterprise)getModel()).getChildren();
+		return ((Enterprise) getModel()).getChildren();
 	}
-	
+
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
+		if (evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
-		} else if(evt.getPropertyName().equals(Node.PROPERTY_DLETE)){
+		} else if (evt.getPropertyName().equals(Node.PROPERTY_DLETE)) {
+			refreshChildren();
+		} else if (evt.getPropertyName().equals(Node.PROPERTY_ADD)) {
 			refreshChildren();
 		}
 	}

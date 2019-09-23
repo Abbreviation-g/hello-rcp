@@ -11,6 +11,7 @@ public class Node {
 	private PropertyChangeSupport listeners;
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
 	public static final String PROPERTY_DLETE = "NodeDelete";
+	public static final String PROPERTY_ADD = "NodeAdd";
 
 	private String name;
 	private Rectangle layout;
@@ -55,7 +56,7 @@ public class Node {
 	public boolean addChild(Node child) {
 		child.setParent(this);
 		boolean result = this.children.add(child);
-		getListeners().firePropertyChange(PROPERTY_DLETE, null, child);
+		getListeners().firePropertyChange(PROPERTY_ADD, null, child);
 		return result;
 	}
 
