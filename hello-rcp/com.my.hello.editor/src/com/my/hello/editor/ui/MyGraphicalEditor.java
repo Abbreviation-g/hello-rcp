@@ -59,6 +59,14 @@ public class MyGraphicalEditor extends GraphicalEditor {
 		
 		manager.setZoomLevelContributions(Arrays.asList(ZoomManager.FIT_ALL,ZoomManager.FIT_HEIGHT,ZoomManager.FIT_WIDTH));
 		
+		KeyHandler keyHandler = new KeyHandler();
+		keyHandler.put(KeyStroke.getPressed(SWT.ZoomChanged, 0),
+				getActionRegistry().getAction(GEFActionConstants.ZOOM_IN));
+		keyHandler.put(KeyStroke.getPressed(SWT.ZoomChanged, 0),
+				getActionRegistry().getAction(GEFActionConstants.ZOOM_OUT));
+		
+		viewer.setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.CTRL), MouseWheelZoomHandler.SINGLETON);
+		viewer.setKeyHandler(keyHandler);
 	}
 
 	@Override
