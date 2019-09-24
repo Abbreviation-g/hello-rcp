@@ -7,7 +7,9 @@ Bundle-Activator: com.my.hello.editor.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gef,
- org.eclipse.ui.editors
+ org.eclipse.ui.editors,
+ org.eclipse.jdt.ui,
+ org.eclipse.ui.views
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.my.hello.editor
 Bundle-ActivationPolicy: lazy

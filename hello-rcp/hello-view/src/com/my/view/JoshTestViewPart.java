@@ -88,30 +88,7 @@ public class JoshTestViewPart extends ViewPart implements ISelectionListener, IS
 
 	@Override
 	public void setFocus() {
-		text.setText("");
-		for(String line:Platform.getCommandLineArgs()) {
-			text.append(line);
-			text.append("\n");
-		}
-		for(String line: Platform.getApplicationArgs()) {
-			text.append(line);
-			text.append("\n");
-		}
-		try {
-			URL url = new URL("https://www.baidu.com");
-			InputStream inputStream = url.openStream();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				text.append(line);
-				text.append("\n");	
-			}
-			reader.close();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		text.setFocus();
 	}
 
 	@Override
