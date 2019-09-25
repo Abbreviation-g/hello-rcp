@@ -17,6 +17,7 @@
             allPopups="false"
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
+               id="org.eclipse.ui.main.menu.hello"
                label="Hello">
             <command
                   commandId="com.my.hello.editor.command1"

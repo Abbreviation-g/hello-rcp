@@ -92,17 +92,13 @@ public class JoshTestViewPart extends ViewPart implements ISelectionListener, IS
 	}
 
 	@Override
+	public void dispose() {
+		getSite().setSelectionProvider(null);
+		super.dispose();
+	}
+	
+	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		System.out.println("JoshTestViewPart.selectionChanged()");
 	}
-
-//	private void pageSelectionChanged(SelectionChangedEvent event) {
-//		// forward this change from a page to our site's selection provider
-//		ListViewer provider = (ListViewer) getSite()
-//				.getSelectionProvider();
-//		provider.setsele
-////		if (provider != null) {
-////			provider.selectionChanged(event);
-////		}
-//	}
 }

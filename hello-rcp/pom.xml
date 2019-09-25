@@ -65,5 +65,7 @@
     	<module>com.my.hello.exteranl.lib</module>
 
     	<module>com.my.hello.editor</module>
+
+    	<module>com.my.hello.editor.filetree</module>
 	</modules>
 </project>

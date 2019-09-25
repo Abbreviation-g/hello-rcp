@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.my.hello.editor.filetree.ui.FileTreeEditorPart"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="false"
+            id="com.my.hello.editor.filetree.editor"
+            name="File Tree Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu.hello?after=additions">
+         <command
+               commandId="com.my.hello.editor.filetree.openeditor"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.my.hello.editor.filetree.handler.OpenEditorHandler"
+            id="com.my.hello.editor.filetree.openeditor"
+            name="Open File Tree Editor">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="com.my.hello.editor.filetree.model.INode"
+            class="com.my.hello.editor.filetree.model.ui.NodeAdapterFactory">
+         <adapter
+               type="org.eclipse.ui.views.properties.IPropertySource">
+         </adapter>
+      </factory>
+   </extension>
+
+</plugin>
