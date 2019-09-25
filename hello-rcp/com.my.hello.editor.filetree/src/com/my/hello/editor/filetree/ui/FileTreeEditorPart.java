@@ -3,6 +3,7 @@ package com.my.hello.editor.filetree.ui;
 import java.io.File;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -48,6 +49,7 @@ public class FileTreeEditorPart extends EditorPart {
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		setSite(site);
 		setInput(input);
+		getContentOutlinePage();
 	}
 
 	@Override
@@ -92,12 +94,6 @@ public class FileTreeEditorPart extends EditorPart {
 		this.viewer = new TreeViewer(parent, SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 		Tree tree = viewer.getTree();
 		tree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 5));
-		viewer.setContentProvider(new NodeContentProvider());
-		viewer.setLabelProvider(new NodeLabelProvider());
-//		viewer.addSelectionChangedListener(getContentOutlinePage());
-		
-		getSite().setSelectionProvider(viewer);
-		getSite().getSelectionProvider().addSelectionChangedListener(getContentOutlinePage());
 
 		Button removeButton = new Button(parent, SWT.PUSH);
 		removeButton.setText("Remove");
@@ -152,6 +148,13 @@ public class FileTreeEditorPart extends EditorPart {
 			viewer.setInput(root);
 			getContentOutlinePage().setInput(root);
 		}));
+		
+		viewer.setContentProvider(new NodeContentProvider());
+		viewer.setLabelProvider(new NodeLabelProvider());
+		
+		getSite().setSelectionProvider(viewer);
+		getSite().getSelectionProvider().addSelectionChangedListener(getContentOutlinePage());
+		
 	}
 
 	@Override
@@ -179,7 +182,7 @@ public class FileTreeEditorPart extends EditorPart {
 			this.contentOutlineViewer = getTreeViewer();
 			contentOutlineViewer.setContentProvider(FileTreeEditorPart.this.viewer.getContentProvider());
 			contentOutlineViewer.setLabelProvider(FileTreeEditorPart.this.viewer.getLabelProvider());
-			contentOutlineViewer.setInput(FileTreeEditorPart.this.root);
+			getSite().setSelectionProvider(contentOutlineViewer);
 		}
 
 		private void setInput(Object input) {
@@ -188,18 +191,19 @@ public class FileTreeEditorPart extends EditorPart {
 
 		@Override
 		public void selectionChanged(SelectionChangedEvent event) {
-			System.out.println("FileTreeEditorPart.FileTreeContentOutlinePage.selectionChanged()");
 			if (!(event.getStructuredSelection().getFirstElement() instanceof Node)) {
 				return;
 			}
 			Viewer editorViewer = FileTreeEditorPart.this.viewer;
 			ISelectionProvider selectionProvicer = event.getSelectionProvider();
 			if (selectionProvicer.equals(editorViewer)) {
-				if (!contentOutlineViewer.getSelection().equals(event.getSelection()))
+				if (!contentOutlineViewer.getSelection().equals(event.getSelection())) {
 					contentOutlineViewer.setSelection(event.getSelection());
+				}
 			} else if (selectionProvicer.equals(contentOutlineViewer)) {
-				if(!editorViewer.getSelection().equals(event.getSelection()))
+				if(!editorViewer.getSelection().equals(event.getSelection())) {
 					editorViewer.setSelection(event.getSelection());
+				}
 			}
 		}
 	}

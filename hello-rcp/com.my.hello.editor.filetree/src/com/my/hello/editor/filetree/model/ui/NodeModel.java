@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
-import org.eclipse.ui.views.properties.TextPropertyDescriptor;
+import org.eclipse.ui.views.properties.PropertyDescriptor;
 
 import com.my.hello.editor.filetree.model.INode;
 
@@ -52,13 +52,13 @@ public class NodeModel  implements INode, IPropertySource{
 
 	@Override
 	public Object getEditableValue() {
-		return this;
+		return null;
 	}
 
 	private static final String FILE_NAME_ID="FILE_NAME_ID"; 
 	private static final String FILE_PATH_ID="FILE_PATH_ID";
-	private static TextPropertyDescriptor fileNamePropertyDescriptor = new TextPropertyDescriptor(FILE_NAME_ID, "File Name");
-	private static TextPropertyDescriptor filePathPropertyDescriptor = new TextPropertyDescriptor(FILE_PATH_ID, "File Path");
+	private static PropertyDescriptor fileNamePropertyDescriptor = new PropertyDescriptor(FILE_NAME_ID, "File Name");
+	private static PropertyDescriptor filePathPropertyDescriptor = new PropertyDescriptor(FILE_PATH_ID, "File Path");
 	private static IPropertyDescriptor[] descriptors = {fileNamePropertyDescriptor, filePathPropertyDescriptor};
 	@Override
 	public IPropertyDescriptor[] getPropertyDescriptors() {
