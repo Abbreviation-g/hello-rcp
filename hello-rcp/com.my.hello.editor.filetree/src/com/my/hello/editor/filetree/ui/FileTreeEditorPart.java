@@ -3,7 +3,6 @@ package com.my.hello.editor.filetree.ui;
 import java.io.File;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -170,10 +169,6 @@ public class FileTreeEditorPart extends EditorPart {
 
 	private class FileTreeContentOutlinePage extends ContentOutlinePage {
 		private TreeViewer contentOutlineViewer;
-
-		FileTreeContentOutlinePage() {
-
-		}
 
 		@Override
 		public void createControl(Composite parent) {

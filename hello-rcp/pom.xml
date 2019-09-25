@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.my</groupId>
 	<artifactId>hello-rcp</artifactId>
@@ -10,7 +12,7 @@
 		<repository>
 			<id>kepler</id>
 			<layout>p2</layout>
-			<url>https://download.eclipse.org/releases/2019-06</url>
+			<url>https://download.eclipse.org/releases/2019-06/201906071000/</url>
 		</repository>
 	</repositories>
 
@@ -21,25 +23,28 @@
 	<build>
 		<plugins>
 			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<extensions>true</extensions>
 			</plugin>
 			<plugin>
-		        <groupId>org.eclipse.tycho</groupId>
-		            <artifactId>tycho-packaging-plugin</artifactId>
-		             <version>${tycho-version}</version>
-		             <executions>
-		              <execution>
-		                <phase>package</phase>
-		                <id>package-feature</id>
-		                    <configuration>
-		                        <outputDirectory>C:\work\cdt-development\target</outputDirectory>
-		                    </configuration>
-		            </execution>
-		        </executions>
-		    </plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
@@ -61,11 +66,11 @@
 		<module>hello-product</module>
 		<module>hello-application</module>
 		<module>hello-feature</module>
-    	<module>hello-view</module>
-    	<module>com.my.hello.exteranl.lib</module>
+		<module>hello-view</module>
+		<module>com.my.hello.exteranl.lib</module>
 
-    	<module>com.my.hello.editor</module>
+		<module>com.my.hello.editor</module>
 
-    	<module>com.my.hello.editor.filetree</module>
+		<module>com.my.hello.editor.filetree</module>
 	</modules>
 </project>

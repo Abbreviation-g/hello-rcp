@@ -11,14 +11,19 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views,
  org.eclipse.pde,
  org.eclipse.pde.ui,
- org.eclipse.wst.xml.ui,
  org.eclipse.jface,
  org.eclipse.core.resources,
  org.eclipse.jface.text,
  org.eclipse.ui.ide,
  org.eclipse.e4.ui.workbench,
  org.eclipse.ui.navigator,
- org.eclipse.ui.navigator.resources
+ org.eclipse.ui.navigator.resources,
+ org.eclipse.jdt.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.my.hello.editor.filetree
 Bundle-ActivationPolicy: lazy
+Export-Package: com.my.hello.editor.filetree,
+ com.my.hello.editor.filetree.handler,
+ com.my.hello.editor.filetree.model,
+ com.my.hello.editor.filetree.model.ui,
+ com.my.hello.editor.filetree.ui

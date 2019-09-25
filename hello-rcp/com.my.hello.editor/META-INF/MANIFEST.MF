@@ -16,6 +16,7 @@ Bundle-ActivationPolicy: lazy
 Export-Package: com.my.hello.editor,
  com.my.hello.editor.command,
  com.my.hello.editor.editpart,
+ com.my.hello.editor.editpart.tree,
  com.my.hello.editor.editpolicy,
  com.my.hello.editor.figure,
  com.my.hello.editor.handler,
