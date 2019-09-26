@@ -18,7 +18,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.ui.workbench,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
- org.eclipse.jdt.ui
+ org.eclipse.jdt.ui,
+ org.eclipse.ui.console
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.my.hello.editor.filetree
 Bundle-ActivationPolicy: lazy

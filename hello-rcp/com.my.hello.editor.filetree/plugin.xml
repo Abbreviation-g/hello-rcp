@@ -40,5 +40,12 @@
          </adapter>
       </factory>
    </extension>
+   <extension
+         point="org.eclipse.ui.console.consoleFactories">
+      <consoleFactory
+            class="com.my.hello.editor.filetree.console.ConsoleFactory"
+            label="Main Console">
+      </consoleFactory>
+   </extension>
 
 </plugin>

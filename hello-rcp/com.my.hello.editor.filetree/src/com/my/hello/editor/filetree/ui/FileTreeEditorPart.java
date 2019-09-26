@@ -23,6 +23,7 @@ import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import com.my.hello.editor.filetree.console.ConsoleHandler;
 import com.my.hello.editor.filetree.model.INode;
 import com.my.hello.editor.filetree.model.Node;
 import com.my.hello.editor.filetree.model.ui.NodeContentProvider;
@@ -33,7 +34,8 @@ public class FileTreeEditorPart extends EditorPart {
 	private FileTreeContentOutlinePage contentOutlinePage;
 	private TreeViewer viewer;
 	private Node root;
-
+	private ConsoleHandler consoleHandler;
+	
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 
@@ -61,6 +63,13 @@ public class FileTreeEditorPart extends EditorPart {
 		return false;
 	}
 
+	public ConsoleHandler getConsoleHandler() {
+		if(this.consoleHandler == null) {
+			consoleHandler = new ConsoleHandler("");
+		}
+		return consoleHandler;
+	}
+	
 	private FileTreeContentOutlinePage getContentOutlinePage() {
 		if (contentOutlinePage == null) {
 			this.contentOutlinePage = new FileTreeContentOutlinePage();
@@ -111,6 +120,7 @@ public class FileTreeEditorPart extends EditorPart {
 			parentNode.remove(node);
 
 			viewer.refresh(parentNode);
+			getConsoleHandler().error("remove a node: "+ node.getFile().getName());
 		}));
 		Button addButton = new Button(parent, SWT.PUSH);
 		addButton.setText("Add");
@@ -126,6 +136,8 @@ public class FileTreeEditorPart extends EditorPart {
 				root.addChild(child);
 
 				viewer.setInput(root);
+				
+				getConsoleHandler().info("remove a node: "+ child.getFile().getName());
 				return;
 			}
 			INode child = new Node();
@@ -146,6 +158,8 @@ public class FileTreeEditorPart extends EditorPart {
 
 			viewer.setInput(root);
 			getContentOutlinePage().setInput(root);
+			
+			getConsoleHandler().info("show all: "+ list.getFile().getName());
 		}));
 		
 		viewer.setContentProvider(new NodeContentProvider());
