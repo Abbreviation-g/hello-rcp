@@ -65,7 +65,7 @@ public class FileTreeEditorPart extends EditorPart {
 
 	public ConsoleHandler getConsoleHandler() {
 		if(this.consoleHandler == null) {
-			consoleHandler = new ConsoleHandler("");
+			consoleHandler = new ConsoleHandler("FileTreeEditorPart");
 		}
 		return consoleHandler;
 	}
@@ -179,6 +179,7 @@ public class FileTreeEditorPart extends EditorPart {
 	public void dispose() {
 		super.dispose();
 		getSite().setSelectionProvider(null);
+		getConsoleHandler().dispose();
 	}
 
 	private class FileTreeContentOutlinePage extends ContentOutlinePage {

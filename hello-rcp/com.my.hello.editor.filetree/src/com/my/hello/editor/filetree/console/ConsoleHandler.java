@@ -18,7 +18,6 @@ public class ConsoleHandler {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				consoleStream = ConsoleFactory.getConsole().newMessageStream();
 				consoleStream.println(new SimpleDateFormat("HH:mm:ss").format(new Date()) + "(INFO)" + " " + _message);
 			}
 		});
@@ -28,10 +27,13 @@ public class ConsoleHandler {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				consoleStream = ConsoleFactory.getConsole().newMessageStream();
 				consoleStream.setColor(new Color(null, 255, 0, 0));
 				consoleStream.println(new SimpleDateFormat("HH:mm:ss").format(new Date()) + "(ERROR)" + " " + _message);
 			}
 		});
+	}
+	
+	public void dispose() {
+		ConsoleFactory.closeConsole();
 	}
 }

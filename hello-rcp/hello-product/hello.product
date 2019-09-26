@@ -3,7 +3,6 @@
 
 <product name="RCP Application" uid="HelloApplication" id="hello-application.hello_application" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
-
    <configIni use="default">
    </configIni>
 
@@ -22,7 +21,6 @@
          <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
@@ -163,6 +161,7 @@
       <feature id="org.eclipse.userstorage" installMode="root"/>
       <feature id="org.eclipse.rcp" installMode="root"/>
       <feature id="org.eclipse.e4.rcp" installMode="root"/>
+      <feature id="org.eclipse.nebula.examples.feature" installMode="root"/>
    </features>
 
    <configurations>
