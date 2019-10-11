@@ -8,6 +8,7 @@ import org.eclipse.gef.EditPolicy;
 
 import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
 import com.my.hello.editor.editpolicy.AppEditLayoutPolicy;
+import com.my.hello.editor.editpolicy.AppRenamePolicy;
 import com.my.hello.editor.figure.ServiceFigure;
 import com.my.hello.editor.model.Node;
 import com.my.hello.editor.model.Service;
@@ -23,6 +24,7 @@ public class ServicePart extends AppAbstractEditpart {
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppEditDeletePolicy());
+		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 	}
 
 	protected void refreshVisuals() {

@@ -30,8 +30,10 @@ public class Node implements IAdaptable{
 		this.listeners = new PropertyChangeSupport(this);
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String newName) {
+		String oldName = this.name;
+		this.name = newName;
+		getListeners().firePropertyChange(PROPERTY_RENAME, oldName, newName);
 	}
 
 	public String getName() {
@@ -91,6 +93,7 @@ public class Node implements IAdaptable{
 	}
 
 	private IPropertySource propertySource = null;
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getAdapter(Class<T> adapter) {
 		if(IPropertySource.class.isAssignableFrom(adapter)) {

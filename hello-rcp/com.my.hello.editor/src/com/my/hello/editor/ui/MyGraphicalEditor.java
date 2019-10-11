@@ -17,12 +17,14 @@ import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gef.ui.parts.TreeViewer;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.DisposeListener;
@@ -34,6 +36,7 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import com.my.hello.editor.action.RenameAction;
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.editpart.tree.AppTreeEditpartFactory;
 import com.my.hello.editor.model.Employee;
@@ -59,6 +62,17 @@ public class MyGraphicalEditor extends GraphicalEditor {
 		setTitleToolTip(getEditorInput().getToolTipText());
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	protected void createActions() {
+		super.createActions();
+		ActionRegistry registry  = getActionRegistry();
+		IAction action = new RenameAction(this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
+	}
+	
+	
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();

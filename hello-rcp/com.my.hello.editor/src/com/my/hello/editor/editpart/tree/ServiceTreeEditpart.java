@@ -8,6 +8,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
+import com.my.hello.editor.editpolicy.AppRenamePolicy;
 import com.my.hello.editor.model.Node;
 import com.my.hello.editor.model.Service;
 
@@ -20,6 +21,7 @@ public class ServiceTreeEditpart extends AppAbstractTreeEditpart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppEditDeletePolicy());
+		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 	}
 	
 	public void refreshVisuals() {
