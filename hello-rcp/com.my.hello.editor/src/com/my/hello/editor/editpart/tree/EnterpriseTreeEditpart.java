@@ -19,6 +19,10 @@ public class EnterpriseTreeEditpart extends AppAbstractTreeEditpart {
 		case Node.PROPERTY_DLETE:
 			refreshChildren();
 			break;
+		case Node.PROPERTY_RENAME:
+		case Enterprise.PROPERTY_CAPITAL:
+			refreshVisuals();
+			break;
 		default:
 			break;
 		}

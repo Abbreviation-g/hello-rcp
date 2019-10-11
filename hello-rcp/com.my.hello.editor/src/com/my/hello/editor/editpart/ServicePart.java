@@ -44,6 +44,10 @@ public class ServicePart extends AppAbstractEditpart {
 			refreshChildren();
 		} else if(evt.getPropertyName().equals(Node.PROPERTY_DLETE)){
 			refreshChildren();
-		} 
+		} else if(evt.getPropertyName().equals(Node.PROPERTY_RENAME)){
+			refreshVisuals();
+		} else if(evt.getPropertyName().equals(Service.PROPERTY_COLOR)) {
+			refreshVisuals();
+		}
 	}
 }

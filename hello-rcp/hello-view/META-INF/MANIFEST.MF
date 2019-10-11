@@ -6,8 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.my.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.my.hello.exteranl.lib,
- org.eclipse.ui.ide;bundle-version="3.15.200"
+ org.eclipse.ui.ide;bundle-version="3.15.200",
+ com.my.hello.exteranl.lib;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: hello-view
 Bundle-ActivationPolicy: lazy

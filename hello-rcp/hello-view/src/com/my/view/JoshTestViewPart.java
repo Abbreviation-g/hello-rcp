@@ -100,5 +100,7 @@ public class JoshTestViewPart extends ViewPart implements ISelectionListener, IS
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		System.out.println("JoshTestViewPart.selectionChanged()");
+		
+		
 	}
 }

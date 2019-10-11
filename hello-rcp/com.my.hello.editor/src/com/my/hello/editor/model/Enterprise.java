@@ -1,6 +1,8 @@
 package com.my.hello.editor.model;
 
 public class Enterprise extends Node {
+	public static final String PROPERTY_CAPITAL = "EnterpriseCapital";
+	
 	private String address;
 	private int capital;
 

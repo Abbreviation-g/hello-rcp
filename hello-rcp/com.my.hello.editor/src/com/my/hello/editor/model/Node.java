@@ -5,13 +5,16 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.ui.views.properties.IPropertySource;
 
-public class Node {
+public class Node implements IAdaptable{
 	private PropertyChangeSupport listeners;
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
 	public static final String PROPERTY_DLETE = "NodeDelete";
 	public static final String PROPERTY_ADD = "NodeAdd";
+	public static final String PROPERTY_RENAME = "NodeRename";
 
 	private String name;
 	private Rectangle layout;
@@ -85,5 +88,18 @@ public class Node {
 
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		listeners.removePropertyChangeListener(listener);
+	}
+
+	private IPropertySource propertySource = null;
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		if(IPropertySource.class.isAssignableFrom(adapter)) {
+			if(propertySource == null) {
+				propertySource = new NodePropertySource(this);
+			}
+			return (T) propertySource;
+		}
+		
+		return null;
 	}
 }

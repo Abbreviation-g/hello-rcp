@@ -35,6 +35,9 @@ public class EmployeeTreeEditpart extends AppAbstractTreeEditpart {
 		case Node.PROPERTY_DLETE:
 			refreshChildren();
 			break;
+		case Employee.PROPERTY_FIRSTNAME:
+			refreshVisuals();
+			break;
 		default:
 			break;
 		}

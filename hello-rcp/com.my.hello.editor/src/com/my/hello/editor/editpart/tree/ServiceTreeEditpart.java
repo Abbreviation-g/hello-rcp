@@ -35,6 +35,10 @@ public class ServiceTreeEditpart extends AppAbstractTreeEditpart {
 		case Node.PROPERTY_DLETE:
 			refreshChildren();
 			break;
+		case Node.PROPERTY_RENAME:
+		case Service.PROPERTY_COLOR:
+			refreshVisuals();
+			break;
 		default:
 			break;
 		}

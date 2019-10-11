@@ -1,7 +1,5 @@
 package com.my.hello.editor.figure;
 
-import java.util.Random;
-
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Label;
@@ -9,7 +7,8 @@ import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.swt.graphics.Color;
+
+import com.my.hello.editor.model.Service;
 
 public class ServiceFigure extends Figure {
 	private Label nameLabel = new Label();
@@ -25,9 +24,15 @@ public class ServiceFigure extends Figure {
 		add(etageLabel, ToolbarLayout.ALIGN_CENTER);
 		setConstraint(etageLabel, new Rectangle(5, 5, -1, -1));
 		
-		Random random = new Random();
-		setForegroundColor(new Color(null, random.nextInt(128), random.nextInt(128), random.nextInt(128)));
-		setBackgroundColor(new Color(null, random.nextInt(128)+128, random.nextInt(128)+128, random.nextInt(128)+128));
+		//设置随机颜色
+//		Random random = new Random();
+//		setForegroundColor(new Color(null, random.nextInt(128), random.nextInt(128), random.nextInt(128)));
+//		setBackgroundColor(new Color(null, random.nextInt(128)+128, random.nextInt(128)+128, random.nextInt(128)+128));
+		
+		Service service = new Service();
+		setForegroundColor(ColorConstants.black);
+		setBackgroundColor(service.getColor());
+		
 		setBorder(new LineBorder(1));
 		setOpaque(true);//不透明
 	}

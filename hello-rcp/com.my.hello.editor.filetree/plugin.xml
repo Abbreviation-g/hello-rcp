@@ -5,7 +5,6 @@
          point="org.eclipse.ui.editors">
       <editor
             class="com.my.hello.editor.filetree.ui.FileTreeEditorPart"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
             default="false"
             id="com.my.hello.editor.filetree.editor"
             name="File Tree Editor">

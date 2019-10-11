@@ -3,6 +3,9 @@ package com.my.hello.editor.filetree.ui;
 import java.io.File;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -14,10 +17,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
@@ -158,7 +164,7 @@ public class FileTreeEditorPart extends EditorPart {
 
 			viewer.setInput(root);
 			getContentOutlinePage().setInput(root);
-			
+			createContextMenu();
 			getConsoleHandler().info("show all: "+ list.getFile().getName());
 		}));
 		
@@ -167,9 +173,34 @@ public class FileTreeEditorPart extends EditorPart {
 		
 		getSite().setSelectionProvider(viewer);
 		getSite().getSelectionProvider().addSelectionChangedListener(getContentOutlinePage());
-		
+		createContextMenu();
 	}
 
+	private void createContextMenu() {
+	      MenuManager menuMgr = new MenuManager("#PopupMenu");
+	      menuMgr.setRemoveAllWhenShown(true);
+//	      menuMgr.addMenuListener(new IMenuListener() {
+//	         public void menuAboutToShow(IMenuManager m) {
+//	            FileTreeEditorPart.this.fillContextMenu(m);
+//	         }
+//	      });
+	      fillContextMenu(menuMgr);
+	      Menu menu = new Menu(viewer.getControl());
+	      MenuItem item = new MenuItem(menu, SWT.PUSH);
+	      item.setText("Test");
+	      
+	      viewer.getControl().setMenu(menu);
+	      getSite().registerContextMenu(menuMgr, viewer);
+	   }
+
+	   private void fillContextMenu(IMenuManager menuMgr) {
+	      menuMgr.add(new Separator("edit"));
+//	      menuMgr.add(removeContributionItem);
+	      menuMgr.add(new Separator(
+	            IWorkbenchActionConstants.MB_ADDITIONS));
+	      menuMgr.add(new Separator("other"));
+	   }
+	
 	@Override
 	public void setFocus() {
 		this.viewer.getTree().setFocus();
