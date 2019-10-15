@@ -7,6 +7,7 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.editparts.AbstractTreeEditPart;
+import org.eclipse.gef.tools.SelectEditPartTracker;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
@@ -34,8 +35,7 @@ public class AppAbstractTreeEditpart extends AbstractTreeEditPart implements Pro
 	
 	@Override
 	public DragTracker getDragTracker(Request req) {
-		// TODO 
-		return super.getDragTracker(req);
+		return new SelectEditPartTracker(this);
 	}
 	
 	@Override

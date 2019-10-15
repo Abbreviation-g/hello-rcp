@@ -11,6 +11,9 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import com.my.hello.editor.model.Service;
 
 public class ServiceFigure extends Figure {
+	public static final int SERVICE_FIGURE_DEFAULT_WIDTH = 250;
+	public static final int SERVICE_FIGURE_DEFAULT_HEIGHT = 150;
+	
 	private Label nameLabel = new Label();
 	private Label etageLabel = new Label();
 	

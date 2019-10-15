@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.Viewport;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.parts.ScrollableThumbnail;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
@@ -17,14 +16,21 @@ import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gef.palette.CreationToolEntry;
+import org.eclipse.gef.palette.MarqueeToolEntry;
+import org.eclipse.gef.palette.PaletteGroup;
+import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.PaletteSeparator;
+import org.eclipse.gef.palette.SelectionToolEntry;
 import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.ContentOutlinePage;
-import org.eclipse.gef.ui.parts.GraphicalEditor;
+import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.DisposeListener;
@@ -36,14 +42,16 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import com.my.hello.editor.Activator;
 import com.my.hello.editor.action.RenameAction;
+import com.my.hello.editor.command.NodeCreationFactory;
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.editpart.tree.AppTreeEditpartFactory;
 import com.my.hello.editor.model.Employee;
 import com.my.hello.editor.model.Enterprise;
 import com.my.hello.editor.model.Service;
 
-public class MyGraphicalEditor extends GraphicalEditor {
+public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	public static final String ID = "com.my.hello.editor.ui.mygraphicaleditor";
 
@@ -66,13 +74,12 @@ public class MyGraphicalEditor extends GraphicalEditor {
 	@Override
 	protected void createActions() {
 		super.createActions();
-		ActionRegistry registry  = getActionRegistry();
+		ActionRegistry registry = getActionRegistry();
 		IAction action = new RenameAction(this);
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
 	}
-	
-	
+
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
@@ -100,7 +107,7 @@ public class MyGraphicalEditor extends GraphicalEditor {
 
 		viewer.setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.CTRL), MouseWheelZoomHandler.SINGLETON);
 		viewer.setKeyHandler(keyHandler);
-		
+
 		ContextMenuProvider menuProvider = new AppContextMenuProvider(viewer, getActionRegistry());
 		viewer.setContextMenu(menuProvider);
 	}
@@ -108,53 +115,8 @@ public class MyGraphicalEditor extends GraphicalEditor {
 	@Override
 	protected void initializeGraphicalViewer() {
 		GraphicalViewer viewer = getGraphicalViewer();
-		this.model = createEnterprise();
+		this.model = Enterprise.createEnterprise();
 		viewer.setContents(model);
-	}
-
-	public Enterprise createEnterprise() {
-		Enterprise enterprise = new Enterprise();
-		enterprise.setName("同福客栈");
-		enterprise.setAddress("西绒线胡同七号");
-		enterprise.setCapital(8000000);
-		Service service_QianTang = new Service();
-		service_QianTang.setName("前堂");
-		service_QianTang.setEtage(2);
-		service_QianTang.setLayout(new Rectangle(30, 50, 250, 150));
-		Employee empolyee_1 = new Employee();
-		empolyee_1.setName("掌柜");
-		empolyee_1.setPrenom("佟");
-		empolyee_1.setLayout(new Rectangle(25, 40, 60, 40));
-		service_QianTang.addChild(empolyee_1);
-		Employee empolyee_2 = new Employee();
-		empolyee_2.setName("展堂");
-		empolyee_2.setPrenom("白");
-
-		empolyee_2.setLayout(new Rectangle(100, 60, 60, 40));
-		service_QianTang.addChild(empolyee_2);
-		Employee empolyee_3 = new Employee();
-		empolyee_3.setName("秀才");
-		empolyee_3.setPrenom("吕");
-		empolyee_3.setLayout(new Rectangle(180, 90, 60, 40));
-		service_QianTang.addChild(empolyee_3);
-		enterprise.addChild(service_QianTang);
-		Service service_HouChu = new Service();
-		service_HouChu.setName("后厨");
-		service_HouChu.setEtage(1);
-		service_HouChu.setLayout(new Rectangle(220, 230, 250, 150));
-		Employee employee_4 = new Employee();
-		employee_4.setName("大嘴");
-		employee_4.setPrenom("李");
-		employee_4.setLayout(new Rectangle(40, 70, 60, 40));
-		service_HouChu.addChild(employee_4);
-		Employee employee_5 = new Employee();
-		employee_5.setName("芙蓉");
-		employee_5.setPrenom("郭");
-		employee_5.setLayout(new Rectangle(170, 100, 60, 40));
-		service_HouChu.addChild(employee_5);
-		enterprise.addChild(service_HouChu);
-
-		return enterprise;
 	}
 
 	@Override
@@ -166,7 +128,7 @@ public class MyGraphicalEditor extends GraphicalEditor {
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
 		if (type == ZoomManager.class) {
 			return ((ScalableRootEditPart) getGraphicalViewer().getRootEditPart()).getZoomManager();
-		} else if(type == IContentOutlinePage.class) {
+		} else if (type == IContentOutlinePage.class) {
 			return new OutlinePage();
 		}
 		return super.getAdapter(type);
@@ -175,7 +137,7 @@ public class MyGraphicalEditor extends GraphicalEditor {
 	protected class OutlinePage extends ContentOutlinePage {
 		private ScrollableThumbnail thumbnail;
 		private DisposeListener disposeListener;
-		
+
 		private SashForm sash;
 
 		public OutlinePage() {
@@ -190,15 +152,17 @@ public class MyGraphicalEditor extends GraphicalEditor {
 			getViewer().setEditPartFactory(new AppTreeEditpartFactory());
 			getViewer().setContents(model);
 			getSelectionSynchronizer().addViewer(getViewer());
-			
+
 			// 增加缩略图
 			Canvas canvas = new Canvas(sash, SWT.BORDER);
 			LightweightSystem lws = new LightweightSystem(canvas);
-			thumbnail = new ScrollableThumbnail((Viewport) ((ScalableRootEditPart)getGraphicalViewer().getRootEditPart()).getFigure());
-			thumbnail.setSource(((ScalableRootEditPart)getGraphicalViewer().getRootEditPart()).getLayer(LayerConstants.PRINTABLE_LAYERS));
+			thumbnail = new ScrollableThumbnail(
+					(Viewport) ((ScalableRootEditPart) getGraphicalViewer().getRootEditPart()).getFigure());
+			thumbnail.setSource(((ScalableRootEditPart) getGraphicalViewer().getRootEditPart())
+					.getLayer(LayerConstants.PRINTABLE_LAYERS));
 			lws.setContents(thumbnail);
-			disposeListener = (event)->{
-				if(thumbnail != null) {
+			disposeListener = (event) -> {
+				if (thumbnail != null) {
 					thumbnail.deactivate();
 					thumbnail = null;
 				}
@@ -218,21 +182,59 @@ public class MyGraphicalEditor extends GraphicalEditor {
 					getActionRegistry().getAction(ActionFactory.DELETE.getId()));
 			bars.updateActionBars();
 			getViewer().setKeyHandler(keyHandler);
-			
+
 			ContextMenuProvider menuProvider = new AppContextMenuProvider(getViewer(), getActionRegistry());
 			getViewer().setContextMenu(menuProvider);
 		}
+
 		@Override
 		public Control getControl() {
 			return this.sash;
 		}
+
 		@Override
 		public void dispose() {
 			getSelectionSynchronizer().removeViewer(getViewer());
-			if(getGraphicalViewer().getControl()!= null && !getGraphicalViewer().getControl().isDisposed()) {
+			if (getGraphicalViewer().getControl() != null && !getGraphicalViewer().getControl().isDisposed()) {
 				getGraphicalViewer().getControl().removeDisposeListener(disposeListener);
 			}
 			super.dispose();
 		}
+	}
+
+	@Override
+	protected PaletteRoot getPaletteRoot() {
+		PaletteRoot paletteRoot = new PaletteRoot();
+		PaletteGroup manipGroup = new PaletteGroup("编辑对象工具");
+		paletteRoot.add(manipGroup);
+
+		SelectionToolEntry selectionToolEntry = new SelectionToolEntry();
+		manipGroup.add(selectionToolEntry);// 单选
+		manipGroup.add(new MarqueeToolEntry());// 多选
+		paletteRoot.setDefaultEntry(selectionToolEntry);
+
+		paletteRoot.add(new PaletteSeparator());
+
+		// 添加新的图片元素
+		PaletteGroup insertGroup = new PaletteGroup("创建元素工具");
+		ImageDescriptor serviceSmall = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+				"icons/service_small.png");
+		ImageDescriptor serviceLarge = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+				"icons/service_large.png");
+		CreationToolEntry serviceCreationToolEntry = new CreationToolEntry("Service", "创建一个Service",
+				new NodeCreationFactory(Service.class), serviceSmall, serviceLarge);
+		insertGroup.add(serviceCreationToolEntry);
+		
+		ImageDescriptor employeeSmall = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+				"icons/employee_small.png");
+		ImageDescriptor employeeLarge = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+				"icons/employee_large.png");
+		CreationToolEntry employeeCreationToolEntry = new CreationToolEntry("Employee", "创建一个Employee",
+				new NodeCreationFactory(Employee.class), employeeSmall, employeeLarge);
+		insertGroup.add(employeeCreationToolEntry);
+		
+		paletteRoot.add(insertGroup);
+
+		return paletteRoot;
 	}
 }

@@ -80,6 +80,10 @@ public class Node implements IAdaptable{
 		return this.children.toArray(new Node[this.children.size()]);
 	}
 
+	public boolean contains(Node child) {
+		return this.children.contains(child);
+	}
+	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		listeners.addPropertyChangeListener(listener);
 	}
