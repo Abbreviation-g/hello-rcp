@@ -78,9 +78,9 @@
 		<module>hello-feature</module>
 		<module>hello-view</module>
 		<module>com.my.hello.exteranl.lib</module>
+		<module>org.dom4j</module>
 
 		<module>com.my.hello.editor</module>
-
 		<module>com.my.hello.editor.filetree</module>
 	</modules>
 </project>

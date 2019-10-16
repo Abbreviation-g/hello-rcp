@@ -23,7 +23,7 @@ public class BarChartExample {
 	 *            the arguments
 	 */
 	public static void main(String[] args) {
-
+		
 		Display display = new Display();
 		Shell shell = new Shell(display);
 		shell.setText("Bar Chart");
