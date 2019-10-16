@@ -47,9 +47,9 @@ import com.my.hello.editor.action.RenameAction;
 import com.my.hello.editor.command.NodeCreationFactory;
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.editpart.tree.AppTreeEditpartFactory;
-import com.my.hello.editor.model.Employee;
-import com.my.hello.editor.model.Enterprise;
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.impl.Employee;
+import com.my.hello.editor.model.impl.Enterprise;
+import com.my.hello.editor.model.impl.Service;
 
 public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 

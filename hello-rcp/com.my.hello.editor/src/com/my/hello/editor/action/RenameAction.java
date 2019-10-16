@@ -15,7 +15,7 @@ import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.my.hello.editor.Activator;
-import com.my.hello.editor.model.Node;
+import com.my.hello.editor.model.impl.Node;
 import com.my.hello.editor.ui.RenameWizard;
 
 public class RenameAction extends SelectionAction {

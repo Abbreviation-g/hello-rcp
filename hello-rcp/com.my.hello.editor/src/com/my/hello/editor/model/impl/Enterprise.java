@@ -1,8 +1,10 @@
-package com.my.hello.editor.model;
+package com.my.hello.editor.model.impl;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-public class Enterprise extends Node {
+import com.my.hello.editor.model.IEnterprise;
+
+public class Enterprise extends Node implements IEnterprise{
 	public static final String PROPERTY_CAPITAL = "EnterpriseCapital";
 	
 	private String address;
@@ -22,6 +24,12 @@ public class Enterprise extends Node {
 
 	public void setCapital(int capital) {
 		this.capital = capital;
+	}
+
+	@Override
+	public String toString() {
+		return "Enterprise [address=" + address + ", capital=" + capital + ", getName()=" + getName()
+				+ ", getChildren()=" + getChildren() + "]";
 	}
 
 	public static Enterprise createEnterprise() {

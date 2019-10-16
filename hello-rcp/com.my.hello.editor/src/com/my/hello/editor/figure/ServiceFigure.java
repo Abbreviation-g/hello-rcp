@@ -8,7 +8,8 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.IService;
+import com.my.hello.editor.model.impl.Service;
 
 public class ServiceFigure extends Figure {
 	public static final int SERVICE_FIGURE_DEFAULT_WIDTH = 250;
@@ -32,7 +33,7 @@ public class ServiceFigure extends Figure {
 //		setForegroundColor(new Color(null, random.nextInt(128), random.nextInt(128), random.nextInt(128)));
 //		setBackgroundColor(new Color(null, random.nextInt(128)+128, random.nextInt(128)+128, random.nextInt(128)+128));
 		
-		Service service = new Service();
+		IService service = new Service();
 		setForegroundColor(ColorConstants.black);
 		setBackgroundColor(service.getColor());
 		

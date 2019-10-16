@@ -3,8 +3,8 @@ package com.my.hello.editor.command;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
 
-import com.my.hello.editor.model.Enterprise;
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.impl.Enterprise;
+import com.my.hello.editor.model.impl.Service;
 
 public class ServiceCreateCommand extends Command {
 	private Enterprise enterprise;

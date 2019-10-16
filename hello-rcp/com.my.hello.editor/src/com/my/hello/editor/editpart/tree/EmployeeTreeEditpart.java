@@ -8,13 +8,15 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
-import com.my.hello.editor.model.Employee;
-import com.my.hello.editor.model.Node;
+import com.my.hello.editor.model.IEmployee;
+import com.my.hello.editor.model.INode;
+import com.my.hello.editor.model.impl.Employee;
+import com.my.hello.editor.model.impl.Node;
 
 public class EmployeeTreeEditpart extends AppAbstractTreeEditpart {
 	@Override
-	protected List<Node> getModelChildren() {
-		return ((Employee)getModel()).getChildren();
+	protected List<INode> getModelChildren() {
+		return ((IEmployee)getModel()).getChildren();
 	}
 	
 	@Override

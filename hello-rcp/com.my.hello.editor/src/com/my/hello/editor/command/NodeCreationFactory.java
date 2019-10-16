@@ -2,8 +2,8 @@ package com.my.hello.editor.command;
 
 import org.eclipse.gef.requests.CreationFactory;
 
-import com.my.hello.editor.model.Employee;
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.impl.Employee;
+import com.my.hello.editor.model.impl.Service;
 
 public class NodeCreationFactory implements CreationFactory{
 

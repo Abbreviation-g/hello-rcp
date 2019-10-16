@@ -3,13 +3,15 @@ package com.my.hello.editor.editpart.tree;
 import java.beans.PropertyChangeEvent;
 import java.util.List;
 
-import com.my.hello.editor.model.Enterprise;
-import com.my.hello.editor.model.Node;
+import com.my.hello.editor.model.IEnterprise;
+import com.my.hello.editor.model.INode;
+import com.my.hello.editor.model.impl.Enterprise;
+import com.my.hello.editor.model.impl.Node;
 
 public class EnterpriseTreeEditpart extends AppAbstractTreeEditpart {
 	@Override
-	protected List<Node> getModelChildren() {
-		return ((Enterprise) getModel()).getChildren();
+	protected List<INode> getModelChildren() {
+		return ((IEnterprise) getModel()).getChildren();
 	}
 
 	@Override

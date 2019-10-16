@@ -1,15 +1,16 @@
-package com.my.hello.editor.model;
+package com.my.hello.editor.model.impl;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.ui.views.properties.IPropertySource;
 
-public class Node implements IAdaptable{
+import com.my.hello.editor.model.INode;
+
+public class Node implements INode{
 	private PropertyChangeSupport listeners;
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
 	public static final String PROPERTY_DLETE = "NodeDelete";
@@ -18,13 +19,13 @@ public class Node implements IAdaptable{
 
 	private String name;
 	private Rectangle layout;
-	private List<Node> children;
-	private Node parent;
+	private List<INode> children;
+	private INode parent;
 
 	public Node() {
 		this.name = "Unknown";
-		this.layout = new Rectangle(10, 10, 100, 100);
-		this.children = new ArrayList<Node>();
+		this.layout = null;
+		this.children = new ArrayList<INode>();
 		this.parent = null;
 
 		this.listeners = new PropertyChangeSupport(this);
@@ -50,37 +51,37 @@ public class Node implements IAdaptable{
 		return this.layout;
 	}
 
-	public void setParent(Node parent) {
+	public void setParent(INode parent) {
 		this.parent = parent;
 	}
 
-	public Node getParent() {
+	public INode getParent() {
 		return parent;
 	}
 
-	public boolean addChild(Node child) {
+	public boolean addChild(INode child) {
 		child.setParent(this);
 		boolean result = this.children.add(child);
 		getListeners().firePropertyChange(PROPERTY_ADD, null, child);
 		return result;
 	}
 
-	public boolean removeChild(Node child) {
+	public boolean removeChild(INode child) {
 		child.setParent(null);
 		boolean result = this.children.remove(child);
 		getListeners().firePropertyChange(PROPERTY_DLETE, child, null);
 		return result;
 	}
 
-	public List<Node> getChildren() {
+	public List<INode> getChildren() {
 		return children;
 	}
 
-	public Node[] getChildrenArray() {
+	public INode[] getChildrenArray() {
 		return this.children.toArray(new Node[this.children.size()]);
 	}
 
-	public boolean contains(Node child) {
+	public boolean contains(INode child) {
 		return this.children.contains(child);
 	}
 	

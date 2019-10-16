@@ -10,8 +10,10 @@ import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
 import com.my.hello.editor.editpolicy.AppEditLayoutPolicy;
 import com.my.hello.editor.editpolicy.AppRenamePolicy;
 import com.my.hello.editor.figure.ServiceFigure;
-import com.my.hello.editor.model.Node;
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.INode;
+import com.my.hello.editor.model.IService;
+import com.my.hello.editor.model.impl.Node;
+import com.my.hello.editor.model.impl.Service;
 
 public class ServicePart extends AppAbstractEditpart {
 
@@ -34,8 +36,8 @@ public class ServicePart extends AppAbstractEditpart {
 		figure.setEtage(model.getEtage());
 		figure.setLayout(model.getLayout());
 	}
-	public List<Node> getModelChildren(){
-		return ((Service)getModel()).getChildren();
+	public List<INode> getModelChildren(){
+		return ((IService)getModel()).getChildren();
 	}
 	
 	@Override

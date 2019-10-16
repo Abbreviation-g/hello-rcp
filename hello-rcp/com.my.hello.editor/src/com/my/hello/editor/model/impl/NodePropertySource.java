@@ -1,4 +1,4 @@
-package com.my.hello.editor.model;
+package com.my.hello.editor.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,9 @@ import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
+
+import com.my.hello.editor.model.IEmployee;
+import com.my.hello.editor.model.IService;
 
 public class NodePropertySource implements IPropertySource {
 	private Node node;
@@ -47,13 +50,13 @@ public class NodePropertySource implements IPropertySource {
 		if(id.equals(Node.PROPERTY_RENAME) ) {
 			return node.getName();
 		} else if(id.equals(Service.PROPERTY_COLOR)) {
-			return ((Service)node).getColor().getRGB();
+			return ((IService)node).getColor().getRGB();
 		} else if(id.equals(Service.PROPERTY_FLOOR)) {
-			return Integer.toString(((Service)node).getEtage());
+			return Integer.toString(((IService)node).getEtage());
 		} else if(id.equals(Enterprise.PROPERTY_CAPITAL)) {
 			return Integer.toString(((Enterprise)node).getCapital());
 		} else if(id.equals(Employee.PROPERTY_FIRSTNAME)) {
-			return ((Employee)node).getPrenom();
+			return ((IEmployee)node).getPrenom();
 		}
 		return null;
 	}
@@ -74,11 +77,11 @@ public class NodePropertySource implements IPropertySource {
 			node.setName((String) value);
 		} else if(id.equals(Service.PROPERTY_COLOR)) {
 			Color newColor = new Color(null, (RGB) value);
-			((Service)node).setColor(newColor);
+			((IService)node).setColor(newColor);
 		} else if(id.equals(Service.PROPERTY_FLOOR)) {
 			try {
 				Integer floor = Integer.parseInt((String) value);
-				((Service)node).setEtage(floor);
+				((IService)node).setEtage(floor);
 			} catch (Exception e) {
 			}
 		} else if(id.equals(Enterprise.PROPERTY_CAPITAL)) {

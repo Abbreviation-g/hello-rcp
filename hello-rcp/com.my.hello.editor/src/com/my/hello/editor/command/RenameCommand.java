@@ -2,7 +2,7 @@ package com.my.hello.editor.command;
 
 import org.eclipse.gef.commands.Command;
 
-import com.my.hello.editor.model.Node;
+import com.my.hello.editor.model.impl.Node;
 
 public class RenameCommand extends Command {
 	private Node model;

@@ -2,7 +2,7 @@ package com.my.hello.editor.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.my.hello.editor.model.Employee;
+import com.my.hello.editor.model.impl.Employee;
 
 public class EmployeeChangeLayoutCommand extends AbstractLayoutCommand {
 	private Employee model;

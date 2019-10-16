@@ -4,9 +4,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 
-import com.my.hello.editor.model.Employee;
-import com.my.hello.editor.model.Enterprise;
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.impl.Employee;
+import com.my.hello.editor.model.impl.Enterprise;
+import com.my.hello.editor.model.impl.Service;
 
 public class AppEditpartFactory implements EditPartFactory {
 

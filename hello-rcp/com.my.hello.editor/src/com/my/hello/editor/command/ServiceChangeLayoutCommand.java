@@ -2,7 +2,7 @@ package com.my.hello.editor.command;
 
 import org.eclipse.draw2d.geometry.Rectangle;
 
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.impl.Service;
 
 public class ServiceChangeLayoutCommand extends AbstractLayoutCommand {
 

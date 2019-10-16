@@ -9,13 +9,15 @@ import org.eclipse.ui.PlatformUI;
 
 import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
 import com.my.hello.editor.editpolicy.AppRenamePolicy;
-import com.my.hello.editor.model.Node;
-import com.my.hello.editor.model.Service;
+import com.my.hello.editor.model.INode;
+import com.my.hello.editor.model.IService;
+import com.my.hello.editor.model.impl.Node;
+import com.my.hello.editor.model.impl.Service;
 
 public class ServiceTreeEditpart extends AppAbstractTreeEditpart {
 	@Override
-	protected List<Node> getModelChildren() {
-		return ((Service)getModel()).getChildren();
+	protected List<INode> getModelChildren() {
+		return ((IService)getModel()).getChildren();
 	}
 	
 	@Override

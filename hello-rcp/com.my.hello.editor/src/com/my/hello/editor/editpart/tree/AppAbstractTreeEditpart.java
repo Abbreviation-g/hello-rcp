@@ -12,7 +12,7 @@ import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
-import com.my.hello.editor.model.Node;
+import com.my.hello.editor.model.impl.Node;
 
 public class AppAbstractTreeEditpart extends AbstractTreeEditPart implements PropertyChangeListener {
 

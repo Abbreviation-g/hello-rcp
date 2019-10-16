@@ -34,5 +34,22 @@
             name="Open Editor">
       </command>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <primaryWizard
+            id="com.my.hello.editor.new_enterprise">
+      </primaryWizard>
+      <category
+            id="com.my.hello.wizard"
+            name="MyWizard">
+      </category>
+      <wizard
+            category="com.my.hello.wizard"
+            class="com.my.hello.editor.wizard.NewEnterpriseWizard"
+            hasPages="true"
+            id="com.my.hello.editor.new_enterprise"
+            name="Enterprise">
+      </wizard>
+   </extension>
 
 </plugin>

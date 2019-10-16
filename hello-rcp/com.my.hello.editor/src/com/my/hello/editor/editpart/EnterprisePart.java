@@ -8,8 +8,10 @@ import org.eclipse.gef.EditPolicy;
 
 import com.my.hello.editor.editpolicy.AppEditLayoutPolicy;
 import com.my.hello.editor.figure.EnterpriseFigure;
-import com.my.hello.editor.model.Enterprise;
-import com.my.hello.editor.model.Node;
+import com.my.hello.editor.model.IEnterprise;
+import com.my.hello.editor.model.INode;
+import com.my.hello.editor.model.impl.Enterprise;
+import com.my.hello.editor.model.impl.Node;
 
 public class EnterprisePart extends AppAbstractEditpart {
 
@@ -33,8 +35,8 @@ public class EnterprisePart extends AppAbstractEditpart {
 		figure.setCapital(model.getCapital());
 	}
 
-	public List<Node> getModelChildren() {
-		return ((Enterprise) getModel()).getChildren();
+	public List<INode> getModelChildren() {
+		return ((IEnterprise) getModel()).getChildren();
 	}
 
 	@Override

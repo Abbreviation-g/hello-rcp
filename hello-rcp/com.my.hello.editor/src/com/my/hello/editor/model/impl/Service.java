@@ -1,10 +1,12 @@
-package com.my.hello.editor.model;
+package com.my.hello.editor.model.impl;
 
 import java.util.Random;
 
 import org.eclipse.swt.graphics.Color;
 
-public class Service extends Node {
+import com.my.hello.editor.model.IService;
+
+public class Service extends Node implements IService {
 	public static final String PROPERTY_COLOR = "ServiceColor";
 	public static final String PROPERTY_FLOOR = "ServiceFloor";
 	
@@ -22,21 +24,31 @@ public class Service extends Node {
 		this.color = createRandomColor();
 	}
 	
+	@Override
 	public int getEtage() {
 		return etage;
 	}
 
+	@Override
 	public void setEtage(int etage) {
 		this.etage = etage;
 	} 
 	
+	@Override
 	public Color getColor() {
 		return color;
 	}
 	
+	@Override
 	public void setColor(Color newColor) {
 		Color oldColor = this.color;
 		this.color = newColor;
 		getListeners().firePropertyChange(PROPERTY_COLOR, oldColor, newColor);
+	}
+
+	@Override
+	public String toString() {
+		return "Service [etage=" + etage + ", color=" + color + ", getName()=" + getName() + ", getLayout()="
+				+ getLayout() +  ", getChildren()=" + getChildren() + "]";
 	}
 }

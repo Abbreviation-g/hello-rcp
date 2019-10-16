@@ -9,8 +9,9 @@ import org.eclipse.gef.EditPolicy;
 
 import com.my.hello.editor.editpolicy.AppEditDeletePolicy;
 import com.my.hello.editor.figure.EmployeeFigure;
-import com.my.hello.editor.model.Employee;
-import com.my.hello.editor.model.Node;
+import com.my.hello.editor.model.INode;
+import com.my.hello.editor.model.impl.Employee;
+import com.my.hello.editor.model.impl.Node;
 
 public class EmployeePart extends AppAbstractEditpart {
 
@@ -32,8 +33,8 @@ public class EmployeePart extends AppAbstractEditpart {
 		figure.setLayout(model.getLayout());
 	}
 	
-	public List<Node> getModelChildren(){
-		return new ArrayList<Node>();
+	public List<INode> getModelChildren(){
+		return new ArrayList<INode>();
 	}
 
 	@Override
