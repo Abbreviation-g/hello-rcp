@@ -9,7 +9,6 @@ import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 import com.my.hello.editor.model.IService;
-import com.my.hello.editor.model.impl.Service;
 
 public class ServiceFigure extends Figure {
 	public static final int SERVICE_FIGURE_DEFAULT_WIDTH = 250;
@@ -18,7 +17,7 @@ public class ServiceFigure extends Figure {
 	private Label nameLabel = new Label();
 	private Label etageLabel = new Label();
 	
-	public ServiceFigure(){
+	public ServiceFigure(IService service){
 		XYLayout layout = new XYLayout();
 		setLayoutManager(layout);
 		nameLabel.setForegroundColor(ColorConstants.darkGray);
@@ -33,7 +32,6 @@ public class ServiceFigure extends Figure {
 //		setForegroundColor(new Color(null, random.nextInt(128), random.nextInt(128), random.nextInt(128)));
 //		setBackgroundColor(new Color(null, random.nextInt(128)+128, random.nextInt(128)+128, random.nextInt(128)+128));
 		
-		IService service = new Service();
 		setForegroundColor(ColorConstants.black);
 		setBackgroundColor(service.getColor());
 		
@@ -49,4 +47,6 @@ public class ServiceFigure extends Figure {
 	public void setLayout(Rectangle rectangle) {
 		getParent().setConstraint(this, rectangle);
 	}
+	
+	
 }

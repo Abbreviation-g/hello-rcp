@@ -19,7 +19,7 @@ public class ServicePart extends AppAbstractEditpart {
 
 	@Override
 	protected IFigure createFigure() {
-		return new ServiceFigure();
+		return new ServiceFigure((IService)getModel());
 	}
 
 	@Override

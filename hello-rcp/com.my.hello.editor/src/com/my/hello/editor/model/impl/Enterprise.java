@@ -5,6 +5,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import com.my.hello.editor.model.IEnterprise;
 
 public class Enterprise extends Node implements IEnterprise{
+
 	public static final String PROPERTY_CAPITAL = "EnterpriseCapital";
 	
 	private String address;

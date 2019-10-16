@@ -45,6 +45,13 @@ public class Service extends Node implements IService {
 		this.color = newColor;
 		firePropertyChange(PROPERTY_COLOR, oldColor, newColor);
 	}
+	
+	@Override
+	public void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+		super.firePropertyChange(propertyName, oldValue, newValue);
+		if(getParent() != null)
+			getParent().firePropertyChange(propertyName, oldValue, newValue);
+	}
 
 	@Override
 	public String toString() {
