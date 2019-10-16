@@ -55,9 +55,12 @@ public class RenameAction extends SelectionAction {
 		if(objects.isEmpty()) {
 			return null;
 		}
-		EditPart editPart = (EditPart) objects.get(0);
-		Command command = editPart.getCommand(renameRequest);
-		return command;
+		if(objects.get(0) instanceof EditPart) {
+			EditPart editPart = (EditPart) objects.get(0);
+			Command command = editPart.getCommand(renameRequest);
+			return command;
+		} 
+		return null;
 	}
 	
 	@Override

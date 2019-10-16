@@ -7,6 +7,8 @@
             class="com.my.hello.editor.ui.MyGraphicalEditor"
             contributorClass="com.my.hello.editor.ui.MyGraphicalEditorActionBarContributor"
             default="false"
+            extensions="enterprise"
+            icon="icons/script_attribute_e_16px_514391_easyicon.net.ico"
             id="com.my.hello.editor.ui.mygraphicaleditor"
             name="MyGraphicalEditor">
       </editor>
@@ -47,9 +49,25 @@
             category="com.my.hello.wizard"
             class="com.my.hello.editor.wizard.NewEnterpriseWizard"
             hasPages="true"
+            icon="icons/script_attribute_e_16px_514391_easyicon.net.ico"
             id="com.my.hello.editor.new_enterprise"
             name="Enterprise">
       </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <newWizardShortcut
+               id="com.my.hello.editor.new_enterprise">
+         </newWizardShortcut>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.ui.resourcePerspective">
+         <newWizardShortcut
+               id="com.my.hello.editor.new_enterprise">
+         </newWizardShortcut>
+      </perspectiveExtension>
    </extension>
 
 </plugin>

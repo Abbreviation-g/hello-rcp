@@ -1,7 +1,6 @@
 package com.my.hello.editor.model;
 
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -35,8 +34,7 @@ public interface INode extends IAdaptable {
 
 	public void addPropertyChangeListener(PropertyChangeListener listener);
 
-	public PropertyChangeSupport getListeners();
-
 	public void removePropertyChangeListener(PropertyChangeListener listener);
 
+	public void firePropertyChange(String propertyName, Object oldValue, Object newValue);
 }

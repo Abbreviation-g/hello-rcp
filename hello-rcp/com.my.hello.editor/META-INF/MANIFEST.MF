@@ -28,4 +28,6 @@ Export-Package: com.my.hello.editor,
  com.my.hello.editor.model,
  com.my.hello.editor.model.file,
  com.my.hello.editor.model.impl,
- com.my.hello.editor.ui
+ com.my.hello.editor.test,
+ com.my.hello.editor.ui,
+ com.my.hello.editor.wizard

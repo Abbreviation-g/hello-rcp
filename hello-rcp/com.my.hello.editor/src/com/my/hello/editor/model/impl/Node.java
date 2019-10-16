@@ -34,7 +34,7 @@ public class Node implements INode{
 	public void setName(String newName) {
 		String oldName = this.name;
 		this.name = newName;
-		getListeners().firePropertyChange(PROPERTY_RENAME, oldName, newName);
+		firePropertyChange(PROPERTY_RENAME, oldName, newName);
 	}
 
 	public String getName() {
@@ -44,7 +44,7 @@ public class Node implements INode{
 	public void setLayout(Rectangle newLayout) {
 		Rectangle oldLayout = this.layout;
 		this.layout = newLayout;
-		getListeners().firePropertyChange(PROPERTY_LAYOUT, oldLayout, newLayout);
+		firePropertyChange(PROPERTY_LAYOUT, oldLayout, newLayout);
 	}
 
 	public Rectangle getLayout() {
@@ -62,14 +62,14 @@ public class Node implements INode{
 	public boolean addChild(INode child) {
 		child.setParent(this);
 		boolean result = this.children.add(child);
-		getListeners().firePropertyChange(PROPERTY_ADD, null, child);
+		firePropertyChange(PROPERTY_ADD, null, child);
 		return result;
 	}
 
 	public boolean removeChild(INode child) {
 		child.setParent(null);
 		boolean result = this.children.remove(child);
-		getListeners().firePropertyChange(PROPERTY_DLETE, child, null);
+		firePropertyChange(PROPERTY_DLETE, child, null);
 		return result;
 	}
 
@@ -89,10 +89,12 @@ public class Node implements INode{
 		listeners.addPropertyChangeListener(listener);
 	}
 
-	public PropertyChangeSupport getListeners() {
-		return listeners;
+	public void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+		if (oldValue == null || newValue == null || !oldValue.equals(newValue)) {
+            this.listeners.firePropertyChange(propertyName,oldValue,newValue);
+        }
 	}
-
+	
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		listeners.removePropertyChangeListener(listener);
 	}

@@ -1,7 +1,10 @@
 package com.my.hello.editor.ui;
 
+import java.io.InputStream;
 import java.util.Arrays;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.Viewport;
@@ -30,6 +33,7 @@ import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithPalette;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
@@ -38,6 +42,9 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
@@ -47,6 +54,9 @@ import com.my.hello.editor.action.RenameAction;
 import com.my.hello.editor.command.NodeCreationFactory;
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.editpart.tree.AppTreeEditpartFactory;
+import com.my.hello.editor.model.IEnterprise;
+import com.my.hello.editor.model.file.DocumentToEnterprise;
+import com.my.hello.editor.model.file.EnterpriseToDocument;
 import com.my.hello.editor.model.impl.Employee;
 import com.my.hello.editor.model.impl.Enterprise;
 import com.my.hello.editor.model.impl.Service;
@@ -55,8 +65,10 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 
 	public static final String ID = "com.my.hello.editor.ui.mygraphicaleditor";
 
-	private Enterprise model;
+	private IEnterprise model;
 	private KeyHandler keyHandler;
+
+	private boolean dirty = false;
 
 	public MyGraphicalEditor() {
 		setEditDomain(new DefaultEditDomain(this));
@@ -115,13 +127,57 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 	@Override
 	protected void initializeGraphicalViewer() {
 		GraphicalViewer viewer = getGraphicalViewer();
-		this.model = Enterprise.createEnterprise();
+		IEditorInput editorInput = getEditorInput();
+		if (editorInput instanceof IFileEditorInput) {
+			IFileEditorInput fileEditorInput = (IFileEditorInput) editorInput;
+			try {
+				InputStream fileInputStream = fileEditorInput.getFile().getContents();
+				DocumentToEnterprise documentToEnterprise = new DocumentToEnterprise(fileInputStream);
+				this.model = documentToEnterprise.toEnterprise();
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		} else {
+			this.model = Enterprise.createEnterprise();
+		}
+		this.model.addPropertyChangeListener((event) -> {
+			if (event.getNewValue() != null) {
+				if (!event.getNewValue().equals(event.getOldValue())) {
+					dirty = true;
+					firePropertyChange(IEditorPart.PROP_DIRTY);
+				}
+			} else if (event.getOldValue() != null) {
+				if (!event.getOldValue().equals(event.getNewValue())) {
+					dirty = true;
+					firePropertyChange(IEditorPart.PROP_DIRTY);
+				}
+			}
+		});
 		viewer.setContents(model);
 	}
 
 	@Override
-	public void doSave(IProgressMonitor monitor) {
+	public boolean isDirty() {
+		System.out.println("MyGraphicalEditor.isDirty(): "+this.dirty);
+		return dirty;
+	}
 
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		IEditorInput editorInput = getEditorInput();
+		if (editorInput instanceof IFileEditorInput) {
+			IFileEditorInput fileEditorInput = (IFileEditorInput) editorInput;
+			IFile file = fileEditorInput.getFile();
+			EnterpriseToDocument enterpriseToDocument = new EnterpriseToDocument(model);
+			InputStream inputStream = enterpriseToDocument.toInputStream();
+			try {
+				file.setContents(inputStream, true, true, monitor);
+				this.dirty = false;
+				firePropertyChange(PROP_DIRTY);
+			} catch (CoreException e) {
+				ErrorDialog.openError(getSite().getShell(), "Error", "", e.getStatus());
+			}
+		}
 	}
 
 	@Override
@@ -224,7 +280,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		CreationToolEntry serviceCreationToolEntry = new CreationToolEntry("Service", "创建一个Service",
 				new NodeCreationFactory(Service.class), serviceSmall, serviceLarge);
 		insertGroup.add(serviceCreationToolEntry);
-		
+
 		ImageDescriptor employeeSmall = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
 				"icons/employee_small.png");
 		ImageDescriptor employeeLarge = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
@@ -232,7 +288,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		CreationToolEntry employeeCreationToolEntry = new CreationToolEntry("Employee", "创建一个Employee",
 				new NodeCreationFactory(Employee.class), employeeSmall, employeeLarge);
 		insertGroup.add(employeeCreationToolEntry);
-		
+
 		paletteRoot.add(insertGroup);
 
 		return paletteRoot;
