@@ -17,8 +17,10 @@ import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
+import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.CreationToolEntry;
 import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteGroup;
@@ -54,6 +56,7 @@ import com.my.hello.editor.action.RenameAction;
 import com.my.hello.editor.command.NodeCreationFactory;
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.editpart.tree.AppTreeEditpartFactory;
+import com.my.hello.editor.listener.MyTemplateTransferDropListener;
 import com.my.hello.editor.model.IEnterprise;
 import com.my.hello.editor.model.file.DocumentToEnterprise;
 import com.my.hello.editor.model.file.EnterpriseToDocument;
@@ -154,11 +157,19 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 			}
 		});
 		viewer.setContents(model);
+		// 12章，拖放
+		viewer.addDropTargetListener(new MyTemplateTransferDropListener(viewer));
+	}
+	
+	@Override
+	protected void initializePaletteViewer() {
+		super.initializePaletteViewer();
+		// 12章，拖放
+		getPaletteViewer().addDragSourceListener(new TemplateTransferDragSourceListener(getPaletteViewer()));
 	}
 
 	@Override
 	public boolean isDirty() {
-		System.out.println("MyGraphicalEditor.isDirty(): "+this.dirty);
 		return dirty;
 	}
 
@@ -277,7 +288,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				"icons/service_small.png");
 		ImageDescriptor serviceLarge = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
 				"icons/service_large.png");
-		CreationToolEntry serviceCreationToolEntry = new CreationToolEntry("Service", "创建一个Service",
+		CreationToolEntry serviceCreationToolEntry = new CombinedTemplateCreationEntry("Service", "创建一个Service",
 				new NodeCreationFactory(Service.class), serviceSmall, serviceLarge);
 		insertGroup.add(serviceCreationToolEntry);
 
@@ -285,7 +296,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				"icons/employee_small.png");
 		ImageDescriptor employeeLarge = Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
 				"icons/employee_large.png");
-		CreationToolEntry employeeCreationToolEntry = new CreationToolEntry("Employee", "创建一个Employee",
+		CreationToolEntry employeeCreationToolEntry = new CombinedTemplateCreationEntry("Employee", "创建一个Employee",
 				new NodeCreationFactory(Employee.class), employeeSmall, employeeLarge);
 		insertGroup.add(employeeCreationToolEntry);
 
