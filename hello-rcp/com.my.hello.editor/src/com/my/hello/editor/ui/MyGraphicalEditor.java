@@ -52,6 +52,8 @@ import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 import com.my.hello.editor.Activator;
+import com.my.hello.editor.action.CopyNodeAction;
+import com.my.hello.editor.action.PasteNodeAction;
 import com.my.hello.editor.action.RenameAction;
 import com.my.hello.editor.command.NodeCreationFactory;
 import com.my.hello.editor.editpart.AppEditpartFactory;
@@ -91,6 +93,14 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		super.createActions();
 		ActionRegistry registry = getActionRegistry();
 		IAction action = new RenameAction(this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
+
+		// 13. 剪切和粘贴
+		action = new CopyNodeAction(this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
+		action = new PasteNodeAction(this);
 		registry.registerAction(action);
 		getSelectionActions().add(action.getId());
 	}
@@ -160,7 +170,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		// 12章，拖放
 		viewer.addDropTargetListener(new MyTemplateTransferDropListener(viewer));
 	}
-	
+
 	@Override
 	protected void initializePaletteViewer() {
 		super.initializePaletteViewer();
@@ -235,6 +245,14 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 				}
 			};
 			getGraphicalViewer().getControl().addDisposeListener(disposeListener);
+
+			IActionBars bars = getSite().getActionBars();
+			ActionRegistry actionRegistry = getActionRegistry();
+			bars.setGlobalActionHandler(ActionFactory.COPY.getId(),
+					actionRegistry.getAction(ActionFactory.COPY.getId()));
+			bars.setGlobalActionHandler(ActionFactory.PASTE.getId(),
+					actionRegistry.getAction(ActionFactory.PASTE.getId()));
+			
 		}
 
 		@Override
