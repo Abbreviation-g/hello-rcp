@@ -33,8 +33,10 @@ public class Service extends Node implements IService, Cloneable {
 	}
 
 	@Override
-	public void setEtage(int etage) {
-		this.etage = etage;
+	public void setEtage(int newEtage) {
+		int oldEtage = this.etage;
+		this.etage = newEtage;
+		firePropertyChange(PROPERTY_FLOOR, oldEtage, newEtage);
 	}
 
 	@Override

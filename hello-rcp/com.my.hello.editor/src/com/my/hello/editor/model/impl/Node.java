@@ -90,7 +90,7 @@ public class Node implements INode{
 	}
 
 	public void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
-		if (oldValue == null || newValue == null || !oldValue.equals(newValue)) {
+		if (!oldValue.equals(newValue)) {
             this.listeners.firePropertyChange(propertyName,oldValue,newValue);
         }
 	}
