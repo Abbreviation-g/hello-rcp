@@ -13,7 +13,10 @@ public class Employee extends Node implements IEmployee, Cloneable {
 
 	@Override
 	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+		String oldValue = this.prenom;
+		String newValue = prenom;
+		this.prenom = newValue;
+		firePropertyChange(PROPERTY_FIRSTNAME, oldValue, newValue);
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.ui.views.properties.ColorPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
-import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 import com.my.hello.editor.model.IEmployee;
@@ -29,7 +28,7 @@ public class NodePropertySource implements IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		List<IPropertyDescriptor> propertyDescriptors = new ArrayList<IPropertyDescriptor>();
 		if(node instanceof Employee) {
-			propertyDescriptors.add(new PropertyDescriptor(Node.PROPERTY_RENAME, "Name"));
+			propertyDescriptors.add(new TextPropertyDescriptor(Node.PROPERTY_RENAME, "Name"));
 		} else {
 			propertyDescriptors.add(new TextPropertyDescriptor(Node.PROPERTY_RENAME, "Name"));
 		}
@@ -40,7 +39,7 @@ public class NodePropertySource implements IPropertySource {
 		} else if(node instanceof Enterprise){
 			propertyDescriptors.add(new TextPropertyDescriptor(Enterprise.PROPERTY_CAPITAL, "Capital"));
 		} else if(node instanceof Employee) {
-			propertyDescriptors.add(new PropertyDescriptor(Employee.PROPERTY_FIRSTNAME, "Prenom"));
+			propertyDescriptors.add(new TextPropertyDescriptor(Employee.PROPERTY_FIRSTNAME, "Prenom"));
 		}
 		return propertyDescriptors.toArray(new IPropertyDescriptor[propertyDescriptors.size()]);
 	}
@@ -90,6 +89,8 @@ public class NodePropertySource implements IPropertySource {
 				((Enterprise)node).setCapital(capital);
 			} catch (Exception e) {
 			}
+		} else if (id.equals(Employee.PROPERTY_FIRSTNAME)) {
+			((Employee)node).setPrenom((String) value);
 		}
 	}
 

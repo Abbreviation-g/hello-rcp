@@ -32,16 +32,18 @@ public class EmployeePart extends AppAbstractEditpart {
 		figure.setFirstName(model.getPrenom());
 		figure.setLayout(model.getLayout());
 	}
-	
-	public List<INode> getModelChildren(){
+
+	public List<INode> getModelChildren() {
 		return new ArrayList<INode>();
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
+		if (evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
-		} else if(evt.getPropertyName().equals(Employee.PROPERTY_FIRSTNAME)) {
+		} else if (evt.getPropertyName().equals(Employee.PROPERTY_FIRSTNAME)) {
+			refreshVisuals();
+		} else if (evt.getPropertyName().equals(Node.PROPERTY_RENAME)) {
 			refreshVisuals();
 		}
 	}

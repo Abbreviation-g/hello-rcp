@@ -34,6 +34,7 @@ public class ServicePart extends AppAbstractEditpart {
 		Service model = (Service) getModel();
 		figure.setName(model.getName());
 		figure.setEtage(model.getEtage());
+		figure.setBackgroundColor(model.getColor());
 		figure.setLayout(model.getLayout());
 	}
 	public List<INode> getModelChildren(){

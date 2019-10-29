@@ -23,8 +23,10 @@ public class Enterprise extends Node implements IEnterprise{
 		return capital;
 	}
 
-	public void setCapital(int capital) {
-		this.capital = capital;
+	public void setCapital(int newCapital) {
+		int oldCapital = this.capital;
+		this.capital = newCapital;
+		firePropertyChange(PROPERTY_CAPITAL, oldCapital, newCapital);
 	}
 
 	@Override
