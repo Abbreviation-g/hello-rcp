@@ -58,6 +58,7 @@ import com.my.hello.editor.action.RenameAction;
 import com.my.hello.editor.command.NodeCreationFactory;
 import com.my.hello.editor.editpart.AppEditpartFactory;
 import com.my.hello.editor.editpart.tree.AppTreeEditpartFactory;
+import com.my.hello.editor.listener.MyTemplateTransferDragSourceListener;
 import com.my.hello.editor.listener.MyTemplateTransferDropListener;
 import com.my.hello.editor.model.IEnterprise;
 import com.my.hello.editor.model.file.DocumentToEnterprise;
@@ -168,6 +169,7 @@ public class MyGraphicalEditor extends GraphicalEditorWithPalette {
 		});
 		viewer.setContents(model);
 		// 12章，拖放
+		viewer.addDragSourceListener(new MyTemplateTransferDragSourceListener(viewer));
 		viewer.addDropTargetListener(new MyTemplateTransferDropListener(viewer));
 	}
 
