@@ -14,7 +14,7 @@ public class NodeContentProvider implements ITreeContentProvider {
 			INode node = (INode) inputElement;
 			List<INode> children = node.getChildren();
 			if (children == null || children.isEmpty())
-				return new Object[] { node };
+				return new Object[] {  };
 			return children.toArray();
 		}
 		return null;

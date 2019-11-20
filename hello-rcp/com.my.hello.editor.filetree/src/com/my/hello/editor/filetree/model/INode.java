@@ -17,4 +17,5 @@ public interface INode {
 	public boolean addChild(INode child);
 
 	public boolean remove(INode child);
+	
 }

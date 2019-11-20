@@ -9,6 +9,9 @@ public class NodeLabelProvider extends LabelProvider {
 	public String getText(Object element) {
 		if (element instanceof INode) {
 			INode entry = (INode) element;
+			if(entry.getFile() == null) {
+				return null;
+			}
 			return entry.getFile().getName();
 		}
 		return null;

@@ -8,7 +8,9 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
@@ -39,9 +41,9 @@ public class FileTreeEditorPart extends EditorPart {
 	public static final String ID = "com.my.hello.editor.filetree.editor";
 	private FileTreeContentOutlinePage contentOutlinePage;
 	private TreeViewer viewer;
-	private Node root;
+	private Node root = new Node();
 	private ConsoleHandler consoleHandler;
-	
+
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 
@@ -70,12 +72,12 @@ public class FileTreeEditorPart extends EditorPart {
 	}
 
 	public ConsoleHandler getConsoleHandler() {
-		if(this.consoleHandler == null) {
+		if (this.consoleHandler == null) {
 			consoleHandler = new ConsoleHandler("FileTreeEditorPart");
 		}
 		return consoleHandler;
 	}
-	
+
 	private FileTreeContentOutlinePage getContentOutlinePage() {
 		if (contentOutlinePage == null) {
 			this.contentOutlinePage = new FileTreeContentOutlinePage();
@@ -120,13 +122,12 @@ public class FileTreeEditorPart extends EditorPart {
 
 			INode parentNode = node.getParent();
 			if (parentNode == null) {
-				viewer.setInput(null);
 				return;
 			}
 			parentNode.remove(node);
 
-			viewer.refresh(parentNode);
-			getConsoleHandler().error("remove a node: "+ node.getFile().getName());
+			refreshNode(parentNode);
+			getConsoleHandler().error("remove a node: " + node.getFile().getName());
 		}));
 		Button addButton = new Button(parent, SWT.PUSH);
 		addButton.setText("Add");
@@ -135,23 +136,15 @@ public class FileTreeEditorPart extends EditorPart {
 			IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
 			INode parentNode = (INode) selection.getFirstElement();
 			if (parentNode == null) {
-				INode child = new Node();
-				child.setFile(new File("Child"));
-
-				root = new Node();
-				root.addChild(child);
-
-				viewer.setInput(root);
-				
-				getConsoleHandler().info("remove a node: "+ child.getFile().getName());
 				return;
 			}
-			INode child = new Node();
+			Node child = new Node();
 			child.setFile(new File(parentNode.getFile(), "Child"));
 			child.setParent(parentNode);
 
 			parentNode.addChild(child);
-			viewer.refresh(parentNode);
+			refreshNode(parentNode);
+			getConsoleHandler().info("add a node: " + child.getFile().getName());
 		}));
 
 		button.addSelectionListener(SelectionListener.widgetSelectedAdapter((e) -> {
@@ -159,53 +152,83 @@ public class FileTreeEditorPart extends EditorPart {
 			if (list == null)
 				return;
 
-			root = new Node();
+			root.init();
 			root.addChild(list);
 
-			viewer.setInput(root);
-			getContentOutlinePage().setInput(root);
+			refreshNode(null);
 			createContextMenu();
-			getConsoleHandler().info("show all: "+ list.getFile().getName());
+			getConsoleHandler().info("show all: " + list.getFile().getName());
 		}));
-		
+
 		viewer.setContentProvider(new NodeContentProvider());
 		viewer.setLabelProvider(new NodeLabelProvider());
-		
+		viewer.setInput(root);
+
 		getSite().setSelectionProvider(viewer);
 		getSite().getSelectionProvider().addSelectionChangedListener(getContentOutlinePage());
 		createContextMenu();
 	}
 
-	private void createContextMenu() {
-	      MenuManager menuMgr = new MenuManager("#PopupMenu");
-	      menuMgr.setRemoveAllWhenShown(true);
-//	      menuMgr.addMenuListener(new IMenuListener() {
-//	         public void menuAboutToShow(IMenuManager m) {
-//	            FileTreeEditorPart.this.fillContextMenu(m);
-//	         }
-//	      });
-	      fillContextMenu(menuMgr);
-	      Menu menu = new Menu(viewer.getControl());
-	      MenuItem item = new MenuItem(menu, SWT.PUSH);
-	      item.setText("Test");
-	      
-	      viewer.getControl().setMenu(menu);
-	      getSite().registerContextMenu(menuMgr, viewer);
-	   }
+	private void refreshNode(INode refreshedNode) {
+		if (refreshedNode == null) {
+			viewer.refresh();
+			if (contentOutlinePage.getTreeViewer() != null) {
+				contentOutlinePage.getTreeViewer().refresh();
+			}
+		} else {
+			viewer.refresh(refreshedNode);
+			if (contentOutlinePage.getTreeViewer() != null) {
+				contentOutlinePage.getTreeViewer().refresh(refreshedNode);
+			}
+		}
+	}
 
-	   private void fillContextMenu(IMenuManager menuMgr) {
-	      menuMgr.add(new Separator("edit"));
+	private class TreeViewerListener implements ITreeViewerListener {
+		private TreeViewer targetViewer;
+		private TreeViewerListener(TreeViewer targetViewer) {
+			this.targetViewer = targetViewer;
+		}
+		@Override
+		public void treeCollapsed(TreeExpansionEvent event) {
+			if(targetViewer != null) {
+				targetViewer.collapseToLevel(event.getElement(), 1);
+			}
+		}
+
+		@Override
+		public void treeExpanded(TreeExpansionEvent event) {
+			if(targetViewer != null) {
+				targetViewer.expandToLevel(event.getElement(), 1);
+			}
+		}
+	}
+
+	private void createContextMenu() {
+		MenuManager menuMgr = new MenuManager("#PopupMenu");
+		menuMgr.setRemoveAllWhenShown(true);
+		fillContextMenu(menuMgr);
+
+		Menu menu = new Menu(viewer.getControl());
+		MenuItem item = new MenuItem(menu, SWT.PUSH);
+		item.setText("Test");
+
+		viewer.getControl().setMenu(menuMgr.getMenu());
+		getSite().registerContextMenu(menuMgr, viewer);
+	}
+
+	private void fillContextMenu(IMenuManager menuMgr) {
+		menuMgr.add(new Separator("addition"));
+		menuMgr.add(new Separator("edit"));
 //	      menuMgr.add(removeContributionItem);
-	      menuMgr.add(new Separator(
-	            IWorkbenchActionConstants.MB_ADDITIONS));
-	      menuMgr.add(new Separator("other"));
-	   }
-	
+		menuMgr.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+		menuMgr.add(new Separator("other"));
+	}
+
 	@Override
 	public void setFocus() {
 		this.viewer.getTree().setFocus();
 	}
-	
+
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -214,35 +237,42 @@ public class FileTreeEditorPart extends EditorPart {
 	}
 
 	private class FileTreeContentOutlinePage extends ContentOutlinePage {
-		private TreeViewer contentOutlineViewer;
 
 		@Override
 		public void createControl(Composite parent) {
 			super.createControl(parent);
 
-			this.contentOutlineViewer = getTreeViewer();
+			TreeViewer contentOutlineViewer = getTreeViewer();
 			contentOutlineViewer.setContentProvider(FileTreeEditorPart.this.viewer.getContentProvider());
 			contentOutlineViewer.setLabelProvider(FileTreeEditorPart.this.viewer.getLabelProvider());
+			contentOutlineViewer.setInput(root);
 			getSite().setSelectionProvider(contentOutlineViewer);
+			
+			contentOutlineViewer.addTreeListener(new TreeViewerListener(viewer));
+			viewer.addTreeListener(new TreeViewerListener(contentOutlinePage.getTreeViewer()));
 		}
 
-		private void setInput(Object input) {
-			contentOutlineViewer.setInput(input);
+		@Override
+		protected TreeViewer getTreeViewer() {
+			return super.getTreeViewer();
 		}
 
 		@Override
 		public void selectionChanged(SelectionChangedEvent event) {
+			if (getTreeViewer() == null) {
+				return;
+			}
 			if (!(event.getStructuredSelection().getFirstElement() instanceof Node)) {
 				return;
 			}
 			Viewer editorViewer = FileTreeEditorPart.this.viewer;
 			ISelectionProvider selectionProvicer = event.getSelectionProvider();
 			if (selectionProvicer.equals(editorViewer)) {
-				if (!contentOutlineViewer.getSelection().equals(event.getSelection())) {
-					contentOutlineViewer.setSelection(event.getSelection());
+				if (!getTreeViewer().getSelection().equals(event.getSelection())) {
+					getTreeViewer().setSelection(event.getSelection());
 				}
-			} else if (selectionProvicer.equals(contentOutlineViewer)) {
-				if(!editorViewer.getSelection().equals(event.getSelection())) {
+			} else if (selectionProvicer.equals(getTreeViewer())) {
+				if (!editorViewer.getSelection().equals(event.getSelection())) {
 					editorViewer.setSelection(event.getSelection());
 				}
 			}
