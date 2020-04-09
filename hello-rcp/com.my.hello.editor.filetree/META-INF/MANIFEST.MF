@@ -25,6 +25,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.my.hello.editor.filetree
 Bundle-ActivationPolicy: lazy
 Export-Package: com.my.hello.editor.filetree,
+ com.my.hello.editor.filetree.console,
  com.my.hello.editor.filetree.handler,
  com.my.hello.editor.filetree.model,
  com.my.hello.editor.filetree.model.ui,

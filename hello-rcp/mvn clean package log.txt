@@ -1,0 +1,306 @@
+PS C:\work\sources\hello-rcp\hello-rcp> mvn clean package
+[INFO] Scanning for projects...
+[INFO] Computing target platform for MavenProject: com.my:hello-product:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-product\pom.xml
+[INFO] Fetching p2.index from https://download.eclipse.org/releases/2019-06/201906071000/
+[INFO] Fetching p2.index from https://download.eclipse.org/releases/2019-06/201906071000/
+[INFO] Adding repository https://download.eclipse.org/releases/2019-06/201906071000
+[INFO] Resolving dependencies of MavenProject: com.my:hello-product:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-product\pom.xml
+[INFO] Resolving class path of MavenProject: com.my:hello-product:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-product\pom.xml
+[INFO] Computing target platform for MavenProject: com.my:hello-application:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-application\pom.xml
+[INFO] Resolving dependencies of MavenProject: com.my:hello-application:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-application\pom.xml
+[INFO] Resolving class path of MavenProject: com.my:hello-application:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-application\pom.xml
+[INFO] Computing target platform for MavenProject: com.my:hello.feature:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-feature\pom.xml
+[INFO] Resolving dependencies of MavenProject: com.my:hello.feature:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-feature\pom.xml
+[INFO] Resolving class path of MavenProject: com.my:hello.feature:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-feature\pom.xml
+[INFO] Computing target platform for MavenProject: com.my:hello-view:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-view\pom.xml
+[INFO] Resolving dependencies of MavenProject: com.my:hello-view:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-view\pom.xml
+[INFO] Resolving class path of MavenProject: com.my:hello-view:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\hello-view\pom.xml
+[INFO] Computing target platform for MavenProject: com.my:com.my.hello.exteranl.lib:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.exteranl.lib\pom.xml
+[INFO] Resolving dependencies of MavenProject: com.my:com.my.hello.exteranl.lib:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.exteranl.lib\pom.xml
+[INFO] Resolving class path of MavenProject: com.my:com.my.hello.exteranl.lib:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.exteranl.lib\pom.xml
+[INFO] Computing target platform for MavenProject: com.my:com.my.hello.editor:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\pom.xml
+[INFO] Resolving dependencies of MavenProject: com.my:com.my.hello.editor:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\pom.xml
+[INFO] Resolving class path of MavenProject: com.my:com.my.hello.editor:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\pom.xml
+[INFO] Computing target platform for MavenProject: com.my:com.my.hello.editor.filetree:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\pom.xml
+[INFO] Resolving dependencies of MavenProject: com.my:com.my.hello.editor.filetree:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\pom.xml
+[INFO] Resolving class path of MavenProject: com.my:com.my.hello.editor.filetree:1.0.0-SNAPSHOT @ C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\pom.xml
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO]
+[INFO] hello-rcp                                                          [pom]
+[INFO] com.my.hello.editor                                     [eclipse-plugin]
+[INFO] com.my.hello.editor.filetree                            [eclipse-plugin]
+[INFO] com.my.hello.exteranl.lib                               [eclipse-plugin]
+[INFO] hello-application                                       [eclipse-plugin]
+[INFO] hello-view                                              [eclipse-plugin]
+[INFO] hello.feature                                          [eclipse-feature]
+[INFO] hello-product                                       [eclipse-repository]
+[INFO]
+[INFO] --------------------------< com.my:hello-rcp >--------------------------
+[INFO] Building hello-rcp 1.0.0-SNAPSHOT                                  [1/8]
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-rcp ---
+[INFO]
+[INFO] ---------------------< com.my:com.my.hello.editor >---------------------
+[INFO] Building com.my.hello.editor 1.0.0-SNAPSHOT                        [2/8]
+[INFO] ---------------------------[ eclipse-plugin ]---------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ com.my.hello.editor ---
+[INFO] Deleting C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\target
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:build-qualifier (default-build-qualifier) @ com.my.hello.editor ---
+[INFO] The project's OSGi version is 1.0.0.201909250823
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-id (default-validate-id) @ com.my.hello.editor ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-version (default-validate-version) @ com.my.hello.editor ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ com.my.hello.editor ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\src\main\resources
+[INFO]
+[INFO] --- tycho-compiler-plugin:1.4.0:compile (default-compile) @ com.my.hello.editor ---
+[INFO] Compiling 28 source files to C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ com.my.hello.editor ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\src\test\resources
+[INFO]
+[INFO] --- target-platform-configuration:1.4.0:target-platform (default-target-platform) @ com.my.hello.editor ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:package-plugin (default-package-plugin) @ com.my.hello.editor ---
+[INFO] Building jar: C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor\target\com.my.hello.editor-1.0.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- tycho-p2-plugin:1.4.0:p2-metadata-default (default-p2-metadata-default) @ com.my.hello.editor ---
+[INFO]
+[INFO] ----------------< com.my:com.my.hello.editor.filetree >-----------------
+[INFO] Building com.my.hello.editor.filetree 1.0.0-SNAPSHOT               [3/8]
+[INFO] ---------------------------[ eclipse-plugin ]---------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ com.my.hello.editor.filetree ---
+[INFO] Deleting C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\target
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:build-qualifier (default-build-qualifier) @ com.my.hello.editor.filetree ---
+[INFO] The project's OSGi version is 1.0.0.201909250823
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-id (default-validate-id) @ com.my.hello.editor.filetree ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-version (default-validate-version) @ com.my.hello.editor.filetree ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ com.my.hello.editor.filetree ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\src\main\resources
+[INFO]
+[INFO] --- tycho-compiler-plugin:1.4.0:compile (default-compile) @ com.my.hello.editor.filetree ---
+[INFO] Compiling 10 source files to C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ com.my.hello.editor.filetree ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\src\test\resources
+[INFO]
+[INFO] --- target-platform-configuration:1.4.0:target-platform (default-target-platform) @ com.my.hello.editor.filetree ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:package-plugin (default-package-plugin) @ com.my.hello.editor.filetree ---
+[INFO] Building jar: C:\work\sources\hello-rcp\hello-rcp\com.my.hello.editor.filetree\target\com.my.hello.editor.filetree-1.0.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- tycho-p2-plugin:1.4.0:p2-metadata-default (default-p2-metadata-default) @ com.my.hello.editor.filetree ---
+[INFO]
+[INFO] ------------------< com.my:com.my.hello.exteranl.lib >------------------
+[INFO] Building com.my.hello.exteranl.lib 1.0.0-SNAPSHOT                  [4/8]
+[INFO] ---------------------------[ eclipse-plugin ]---------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ com.my.hello.exteranl.lib ---
+[INFO] Deleting C:\work\sources\hello-rcp\hello-rcp\com.my.hello.exteranl.lib\target
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:build-qualifier (default-build-qualifier) @ com.my.hello.exteranl.lib ---
+[INFO] The project's OSGi version is 1.0.0.201909250823
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-id (default-validate-id) @ com.my.hello.exteranl.lib ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-version (default-validate-version) @ com.my.hello.exteranl.lib ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ com.my.hello.exteranl.lib ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\com.my.hello.exteranl.lib\src\main\resources
+[INFO]
+[INFO] --- tycho-compiler-plugin:1.4.0:compile (default-compile) @ com.my.hello.exteranl.lib ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ com.my.hello.exteranl.lib ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\com.my.hello.exteranl.lib\src\test\resources
+[INFO]
+[INFO] --- target-platform-configuration:1.4.0:target-platform (default-target-platform) @ com.my.hello.exteranl.lib ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:package-plugin (default-package-plugin) @ com.my.hello.exteranl.lib ---
+[INFO] Building jar: C:\work\sources\hello-rcp\hello-rcp\com.my.hello.exteranl.lib\target\com.my.hello.exteranl.lib-1.0.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- tycho-p2-plugin:1.4.0:p2-metadata-default (default-p2-metadata-default) @ com.my.hello.exteranl.lib ---
+[INFO]
+[INFO] ----------------------< com.my:hello-application >----------------------
+[INFO] Building hello-application 1.0.0-SNAPSHOT                          [5/8]
+[INFO] ---------------------------[ eclipse-plugin ]---------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-application ---
+[INFO] Deleting C:\work\sources\hello-rcp\hello-rcp\hello-application\target
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:build-qualifier (default-build-qualifier) @ hello-application ---
+[INFO] The project's OSGi version is 1.0.0.201909250823
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-id (default-validate-id) @ hello-application ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-version (default-validate-version) @ hello-application ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ hello-application ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\hello-application\src\main\resources
+[INFO]
+[INFO] --- tycho-compiler-plugin:1.4.0:compile (default-compile) @ hello-application ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ hello-application ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\hello-application\src\test\resources
+[INFO]
+[INFO] --- target-platform-configuration:1.4.0:target-platform (default-target-platform) @ hello-application ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:package-plugin (default-package-plugin) @ hello-application ---
+[INFO] Building jar: C:\work\sources\hello-rcp\hello-rcp\hello-application\target\hello-application-1.0.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- tycho-p2-plugin:1.4.0:p2-metadata-default (default-p2-metadata-default) @ hello-application ---
+[INFO]
+[INFO] -------------------------< com.my:hello-view >--------------------------
+[INFO] Building hello-view 1.0.0-SNAPSHOT                                 [6/8]
+[INFO] ---------------------------[ eclipse-plugin ]---------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-view ---
+[INFO] Deleting C:\work\sources\hello-rcp\hello-rcp\hello-view\target
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:build-qualifier (default-build-qualifier) @ hello-view ---
+[INFO] The project's OSGi version is 1.0.0.201909250823
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-id (default-validate-id) @ hello-view ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-version (default-validate-version) @ hello-view ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ hello-view ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\hello-view\src\main\resources
+[INFO]
+[INFO] --- tycho-compiler-plugin:1.4.0:compile (default-compile) @ hello-view ---
+[INFO] Compiling 2 source files to C:\work\sources\hello-rcp\hello-rcp\hello-view\target\classes
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:testResources (default-testResources) @ hello-view ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\hello-view\src\test\resources
+[INFO]
+[INFO] --- target-platform-configuration:1.4.0:target-platform (default-target-platform) @ hello-view ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:package-plugin (default-package-plugin) @ hello-view ---
+[INFO] Building jar: C:\work\sources\hello-rcp\hello-rcp\hello-view\target\hello-view-1.0.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- tycho-p2-plugin:1.4.0:p2-metadata-default (default-p2-metadata-default) @ hello-view ---
+[INFO]
+[INFO] ------------------------< com.my:hello.feature >------------------------
+[INFO] Building hello.feature 1.0.0-SNAPSHOT                              [7/8]
+[INFO] --------------------------[ eclipse-feature ]---------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello.feature ---
+[INFO] Deleting C:\work\sources\hello-rcp\hello-rcp\hello-feature\target
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:build-qualifier-aggregator (default-build-qualifier-aggregator) @ hello.feature ---
+[INFO] The project's OSGi version is 1.0.0.201909250823
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-id (default-validate-id) @ hello.feature ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:validate-version (default-validate-version) @ hello.feature ---
+[INFO]
+[INFO] --- target-platform-configuration:1.4.0:target-platform (default-target-platform) @ hello.feature ---
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:package-feature (default-package-feature) @ hello.feature ---
+[INFO] Building jar: C:\work\sources\hello-rcp\hello-rcp\hello-feature\target\hello.feature-1.0.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- tycho-p2-plugin:1.4.0:p2-metadata-default (default-p2-metadata-default) @ hello.feature ---
+[INFO]
+[INFO] --- tycho-p2-plugin:1.4.0:feature-p2-metadata (default-feature-p2-metadata) @ hello.feature ---
+[INFO]
+[INFO] ------------------------< com.my:hello-product >------------------------
+[INFO] Building hello-product 1.0.0-SNAPSHOT                              [8/8]
+[INFO] -------------------------[ eclipse-repository ]-------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ hello-product ---
+[INFO] Deleting C:\work\sources\hello-rcp\hello-rcp\hello-product\target
+[INFO]
+[INFO] --- tycho-packaging-plugin:1.4.0:build-qualifier-aggregator (default-build-qualifier-aggregator) @ hello-product ---
+[INFO] The project's OSGi version is 1.0.0.201909250823
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean-1) @ hello-product ---
+[INFO]
+[INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ hello-product ---
+[WARNING] Using platform encoding (GBK actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory C:\work\sources\hello-rcp\hello-rcp\hello-product\src\main\resources
+[INFO]
+[INFO] --- target-platform-configuration:1.4.0:target-platform (default-target-platform) @ hello-product ---
+[INFO]
+[INFO] --- tycho-p2-publisher-plugin:1.4.0:publish-osgi-ee (default-publish-osgi-ee) @ hello-product ---
+[INFO] Published profile IUs: [a.jre.javase 10.0.0, config.a.jre.javase 10.0.0]
+[INFO] Published profile IUs: [a.jre.javase 11.0.0, config.a.jre.javase 11.0.0]
+[INFO]
+[INFO] --- tycho-p2-publisher-plugin:1.4.0:publish-products (default-publish-products) @ hello-product ---
+[INFO] publishing result: [The bundles specified in the product definition are ignored; verify the value of the 'type' or 'useFeatures' attribute.]
+[INFO]
+[INFO] --- tycho-p2-publisher-plugin:1.4.0:publish-categories (default-publish-categories) @ hello-product ---
+[INFO]
+[INFO] --- tycho-p2-publisher-plugin:1.4.0:attach-artifacts (default-attach-artifacts) @ hello-product ---
+[INFO]
+[INFO] --- tycho-p2-repository-plugin:1.4.0:assemble-repository (default-assemble-repository) @ hello-product ---
+[INFO]
+[INFO] --- tycho-p2-repository-plugin:1.4.0:archive-repository (default-archive-repository) @ hello-product ---
+[INFO] Building zip: C:\work\sources\hello-rcp\hello-rcp\hello-product\target\hello-product-1.0.0-SNAPSHOT.zip
+[INFO]
+[INFO] --- tycho-p2-director-plugin:1.4.0:materialize-products (materialize-products) @ hello-product ---
+[INFO] Installing product HelloApplication for environment win32/win32/x86_64 to C:\work\sources\hello-rcp\hello-rcp\hello-product\target\products\HelloApplication\win32\win32\x86_64
+Installing HelloApplication 1.0.0.201909250823.
+Installing hello.feature.feature.group 1.0.0.201909250823.
+Installing org.eclipse.epp.mpc.feature.group 1.7.7.v20190521-1752.
+Installing org.eclipse.jdt.feature.group 3.18.0.v20190531-0245.
+Installing org.eclipse.e4.core.tools.feature.feature.group 4.12.0.v20190505-1221.
+Installing org.eclipse.buildship.feature.group 3.1.0.v20190501-0832.
+Installing org.eclipse.eclemma.feature.feature.group 3.1.2.201903112331.
+Installing org.eclipse.m2e.feature.feature.group 1.12.0.20190529-1916.
+Installing org.eclipse.emf.ecore.feature.group 2.18.0.v20190528-0845.
+Installing org.eclipse.equinox.p2.extras.feature.feature.group 1.4.400.v20190516-1504.
+Installing org.eclipse.emf.common.feature.group 2.16.0.v20190528-0845.
+Installing org.eclipse.equinox.p2.core.feature.feature.group 1.6.200.v20190516-1504.
+Installing org.eclipse.ecf.core.feature.feature.group 1.5.3.v20190423-0625.
+Installing org.eclipse.ecf.filetransfer.httpclient45.feature.feature.group 1.0.0.v20190530-1947.
+Installing org.eclipse.equinox.p2.rcp.feature.feature.group 1.4.400.v20190516-1504.
+Installing org.eclipse.equinox.p2.discovery.feature.feature.group 1.2.200.v20190129-1112.
+Installing org.eclipse.ecf.filetransfer.feature.feature.group 3.14.5.v20190423-0614.
+Installing org.eclipse.ecf.core.ssl.feature.feature.group 1.1.200.v20190502-0212.
+Installing org.eclipse.ecf.filetransfer.ssl.feature.feature.group 1.1.100.v20180301-0132.
+Installing org.eclipse.userstorage.feature.group 1.2.0.v20190308-0433.
+Installing org.eclipse.rcp.feature.group 4.12.0.v20190531-0245.
+Installing org.eclipse.e4.rcp.feature.group 1.6.500.v20190529-1801.
+Operation completed in 181555 ms.
+[INFO]
+[INFO] --- tycho-p2-director-plugin:1.4.0:archive-products (archive-products) @ hello-product ---
+[INFO] Building zip: C:\work\sources\hello-rcp\hello-rcp\hello-product\target\products\HelloApplication-win32.win32.x86_64.zip
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO]
+[INFO] hello-rcp 1.0.0-SNAPSHOT ........................... SUCCESS [  0.433 s]
+[INFO] com.my.hello.editor ................................ SUCCESS [  9.340 s]
+[INFO] com.my.hello.editor.filetree ....................... SUCCESS [  3.134 s]
+[INFO] com.my.hello.exteranl.lib .......................... SUCCESS [  1.616 s]
+[INFO] hello-application .................................. SUCCESS [  0.862 s]
+[INFO] hello-view ......................................... SUCCESS [  1.505 s]
+[INFO] hello.feature ...................................... SUCCESS [  0.797 s]
+[INFO] hello-product 1.0.0-SNAPSHOT ....................... SUCCESS [05:30 min]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 08:58 min
+[INFO] Finished at: 2019-09-25T16:32:11+08:00
+[INFO] ------------------------------------------------------------------------
