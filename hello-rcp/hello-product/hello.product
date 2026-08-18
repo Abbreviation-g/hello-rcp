@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="RCP Application" uid="HelloApplication" id="hello-application.hello_application" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
-   <configIni use="default"/>
+<product name="RCP Application" uid="HelloApplication" id="hello-application.hello_application" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" type="features" includeLaunchers="true" autoIncludeRequirements="true">
+
+   <configIni use="default">
+   </configIni>
+
    <launcherArgs>
-      <programArgs>-clearPersistedState</programArgs>
-      <vmArgs>-Dfile.encoding=UTF-8</vmArgs>
+      <programArgs>-clearPersistedState
+      </programArgs>
+      <vmArgs>-Dfile.encoding=UTF-8
+      </vmArgs>
    </launcherArgs>
+
    <launcher name="hello-application">
       <win useIco="true">
          <ico path="launch/sts.ico"/>
          <bmp/>
       </win>
    </launcher>
+
    <vm>
       <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21</windows>
    </vm>
-   <plugins/>
+
+   <plugins>
+   </plugins>
+
    <features>
       <feature id="org.eclipse.rcp" installMode="root"/>
       <feature id="org.eclipse.platform" installMode="root"/>
       <feature id="hello.feature" installMode="root"/>
    </features>
+
    <configurations>
-      <plugin id="org.eclipse.core.contenttype" autoStart="true" startLevel="4"/>
-      <plugin id="org.eclipse.core.resources" autoStart="true" startLevel="4"/>
-      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0"/>
-      <plugin id="org.eclipse.equinox.registry" autoStart="true" startLevel="2"/>
-      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2"/>
-      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1"/>
+      <plugin id="org.apache.felix.scr" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.core.contenttype" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.core.resources" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.registry" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
    </configurations>
+
    <preferencesInfo>
       <targetfile overwrite="false"/>
    </preferencesInfo>
-   <cssInfo/>
+
+   <cssInfo>
+   </cssInfo>
+
 </product>
