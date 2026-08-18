@@ -31,13 +31,6 @@
          unpack="false"/>
 
    <plugin
-         id="com.my.hello.exteranl.lib"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="com.my.hello.editor"
          download-size="0"
          install-size="0"
@@ -52,7 +45,14 @@
          unpack="false"/>
 
    <plugin
-         id="org.dom4j"
+         id="org.eclipse.core.contenttype"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.registry"
          download-size="0"
          install-size="0"
          version="0.0.0"
