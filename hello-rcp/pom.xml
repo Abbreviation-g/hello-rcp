@@ -8,26 +8,9 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<repositories>
-		<repository>
-			<id>eclipse</id>
-			<layout>p2</layout>
-			<url>https://download.eclipse.org/releases/2019-06/</url>
-		</repository>
-		<repository>
-			<id>cdt</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/tools/cdt/releases/9.4/</url>
-		</repository>		
-		<repository>
-			<id>nebula</id>
-			<layout>p2</layout>
-			<url>https://download.eclipse.org/nebula/updates/release/3.1.1/</url>
-		</repository>	
-	</repositories>
-
 	<properties>
-		<tycho-version>2.7.5</tycho-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<tycho-version>5.0.3</tycho-version>
 	</properties>
 
 	<build>
@@ -47,6 +30,14 @@
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-packaging-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<executions>
@@ -60,6 +51,11 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
+					<executionEnvironment>JavaSE-21</executionEnvironment>
+					<pomDependencies>consider</pomDependencies>
+					<target>
+						<file>${maven.multiModuleProjectDirectory}/hello-rcp.target</file>
+					</target>
 					<environments>
 						<environment>
 							<os>win32</os>
@@ -77,8 +73,6 @@
 		<module>hello-application</module>
 		<module>hello-feature</module>
 		<module>hello-view</module>
-		<module>com.my.hello.exteranl.lib</module>
-		<module>org.dom4j</module>
 
 		<module>com.my.hello.editor</module>
 		<module>com.my.hello.editor.filetree</module>
