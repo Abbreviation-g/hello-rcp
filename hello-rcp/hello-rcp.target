@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target name="hello-rcp" sequenceNumber="1">
+<target includeMode="feature" name="hello-rcp" sequenceNumber="1">
     <locations>
         <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
             <unit id="org.eclipse.rcp.feature.group" version="0.0.0"/>
@@ -19,13 +19,18 @@
             <repository location="https://download.eclipse.org/releases/2026-06"/>
         </location>
         <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
-            <unit id="org.eclipse.swtchart" version="0.0.0"/>
             <repository location="https://download.eclipse.org/swtchart/releases/1.1.0/repository"/>
+	        <unit id="org.eclipse.swtchart.feature.feature.group" version="1.1.0.202511241716"/>
         </location>
         <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
             <unit id="org.eclipse.orbit.maven.org.dom4j.feature.group" version="4.40.0"/>
             <repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/release/4.40.0"/>
         </location>
+	    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+		    <repository location="https://download.eclipse.org/nebula/updates/release/3.4.0"/>
+		    <unit id="org.eclipse.nebula.examples.feature.feature.group" version="1.1.0.202606141240"/>
+		    <unit id="org.eclipse.nebula.examples.release.feature.feature.group" version="1.1.0.202606141240"/>
+	    </location>
     </locations>
     <environment>
         <os>win32</os>
