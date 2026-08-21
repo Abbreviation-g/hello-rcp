@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="hello.feature">
+      <category name="hello-rcp"/>
+   </feature>
+   <category-def name="hello-rcp" label="Hello RCP"/>
+</site>
