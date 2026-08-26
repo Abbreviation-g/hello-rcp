@@ -22,7 +22,7 @@ public class SwtVideo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("22222222222");
+		System.out.println("3333333333");
 		try {
 			SwtVideo window = new SwtVideo();
 			window.open();
