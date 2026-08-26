@@ -31,6 +31,36 @@
 		    <unit id="org.eclipse.nebula.examples.feature.feature.group" version="1.1.0.202606141240"/>
 		    <unit id="org.eclipse.nebula.examples.release.feature.feature.group" version="1.1.0.202606141240"/>
 	    </location>
+	    <location includeDependencyDepth="none" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
+		    <dependencies>
+			    <dependency>
+				    <groupId>org.jfree</groupId>
+				    <artifactId>jfreechart-swt</artifactId>
+				    <version>1.0</version>
+				    <type>jar</type>
+			    </dependency>
+		    </dependencies>
+	    </location>
+	    <location includeDependencyDepth="none" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
+		    <dependencies>
+			    <dependency>
+				    <groupId>org.jfree</groupId>
+				    <artifactId>jfreechart</artifactId>
+				    <version>1.5.6</version>
+				    <type>jar</type>
+			    </dependency>
+		    </dependencies>
+	    </location>
+	    <location includeDependencyDepth="none" includeSource="true" missingManifest="generate" type="Maven">
+		    <dependencies>
+			    <dependency>
+				    <groupId>org.jfree</groupId>
+				    <artifactId>swtgraphics2d</artifactId>
+				    <version>1.1.0</version>
+				    <type>jar</type>
+			    </dependency>
+		    </dependencies>
+	    </location>
     </locations>
     <environment>
         <os>win32</os>

@@ -22,6 +22,7 @@ public class SwtVideo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		System.out.println("22222222222");
 		try {
 			SwtVideo window = new SwtVideo();
 			window.open();
@@ -48,6 +49,7 @@ public class SwtVideo {
 	 * Create contents of the window
 	 */
 	protected void createContents() {
+		System.out.println("---------------");
 		shell = new Shell();
 		shell.setLayout(new FillLayout());
 		shell.setSize(400, 300);
@@ -105,7 +107,7 @@ public class SwtVideo {
 		dispIdMember = rgdispid[0];
 		rgvarg = new Variant[1];
 //		rgvarg[0] = new Variant("D://test.avi");
-		rgvarg[0] = new Variant("C:\\Users\\guo\\Pictures\\0cf0c5cdccc423be9bcbc3e96c46a6d2.jpg");
+		rgvarg[0] = new Variant("C:\\Users\\enjing.guo\\Downloads\\ttnn-visualizer-demo.mp4");
 		isX = auto.setProperty(dispIdMember, rgvarg);
 
 	}

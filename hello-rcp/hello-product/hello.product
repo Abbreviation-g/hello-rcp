@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="RCP Application" uid="HelloApplication" id="hello-application.hello_application" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" type="features" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="RCP Application" uid="HelloApplication" id="hello-application.hello_application" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" type="features" includeLaunchers="true" includeJRE="true" autoIncludeRequirements="true">
 
 
    <configIni use="default">
@@ -16,7 +16,6 @@
 
    <windowImages/>
 
-
    <launcher name="hello-application">
       <win useIco="true">
          <ico path="launch/sts.ico"/>
@@ -26,9 +25,8 @@
 
 
    <vm>
-      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21</windows>
+      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-25</windows>
    </vm>
-
 
    <plugins>
    </plugins>
