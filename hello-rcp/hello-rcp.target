@@ -31,6 +31,12 @@
 		    <unit id="org.eclipse.nebula.examples.feature.feature.group" version="1.1.0.202606141240"/>
 		    <unit id="org.eclipse.nebula.examples.release.feature.feature.group" version="1.1.0.202606141240"/>
 	    </location>
+	    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+		    <repository location="https://dl.equo.dev/chromium-swt-ce/oss/p2/150"/>
+		    <unit id="com.equo.chromium.cef.feature.feature.group" version="150.0.0"/>
+		    <unit id="com.equo.chromium.feature.feature.group" version="150.0.0"/>
+		    <unit id="com.equo.chromium.feature.source.feature.group" version="150.0.0"/>
+	    </location>
 	    <location includeDependencyDepth="none" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
 		    <dependencies>
 			    <dependency>
@@ -51,7 +57,7 @@
 			    </dependency>
 		    </dependencies>
 	    </location>
-	    <location includeDependencyDepth="none" includeSource="true" missingManifest="generate" type="Maven">
+	    <location includeDependencyDepth="none" includeDependencyScopes="compile" includeSource="true" missingManifest="generate" type="Maven">
 		    <dependencies>
 			    <dependency>
 				    <groupId>org.jfree</groupId>

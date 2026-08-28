@@ -9,6 +9,12 @@
             name="TestViewPart"
             restorable="true">
       </view>
+          <view
+                class="com.my.view.CefBrowserViewPart"
+                id="hello-view.cef.view"
+                name="Chrome Browser"
+                restorable="true">
+          </view>
    </extension>
 
 </plugin>

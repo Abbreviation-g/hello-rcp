@@ -4,7 +4,8 @@ Bundle-Name: Hello-view
 Bundle-SymbolicName: hello-view;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.my.Activator
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: com.equo.chromium,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.ide,
  org.eclipse.swtchart,
