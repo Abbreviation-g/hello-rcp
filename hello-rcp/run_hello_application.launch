@@ -28,6 +28,9 @@
     <stringAttribute key="pde.version" value="3.3"/>
     <stringAttribute key="product" value="hello-application.hello_application"/>
     <setAttribute key="selected_features">
+        <setEntry value="com.equo.chromium.cef.feature:default"/>
+        <setEntry value="com.equo.chromium.feature.source:default"/>
+        <setEntry value="com.equo.chromium.feature:default"/>
         <setEntry value="hello.feature:default"/>
         <setEntry value="org.eclipse.e4.rcp:default"/>
         <setEntry value="org.eclipse.equinox.p2.core.feature:default"/>
