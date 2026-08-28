@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lifecycleMappingMetadata>
+  <pluginExecutions>
+    <pluginExecution>
+      <pluginExecutionFilter>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <versionRange>[5.0.0,)</versionRange>
+        <goals>
+          <goal>package-plugin</goal>
+        </goals>
+      </pluginExecutionFilter>
+      <action>
+        <ignore />
+      </action>
+    </pluginExecution>
+  </pluginExecutions>
+  <lifecycleMappings>
+    <lifecycleMapping>
+      <packagingType>eclipse-feature</packagingType>
+      <lifecycleMappingId>org.eclipse.m2e.jdt.JarLifecycleMapping</lifecycleMappingId>
+    </lifecycleMapping>
+    <lifecycleMapping>
+      <packagingType>eclipse-plugin</packagingType>
+      <lifecycleMappingId>org.eclipse.m2e.jdt.JarLifecycleMapping</lifecycleMappingId>
+    </lifecycleMapping>
+  </lifecycleMappings>
+
+</lifecycleMappingMetadata>
