@@ -70,6 +70,7 @@
 
 	<modules>
 		<module>hello-product</module>
+		<module>hello-repo</module>
 		<module>hello-application</module>
 		<module>hello-feature</module>
 		<module>hello-view</module>
