@@ -69,13 +69,13 @@
 	</build>
 
 	<modules>
-		<module>hello-product</module>
-		<module>hello-repo</module>
-		<module>hello-application</module>
-		<module>hello-feature</module>
-		<module>hello-view</module>
+		<module>releng/hello-product</module>
+		<module>releng/hello-feature</module>
+		<module>releng/hello-repo</module>
 
-		<module>com.my.hello.editor</module>
-		<module>com.my.hello.editor.filetree</module>
+		<module>bundles/hello-application</module>
+		<module>bundles/hello-view</module>
+		<module>bundles/com.my.hello.editor</module>
+		<module>bundles/com.my.hello.editor.filetree</module>
 	</modules>
 </project>
