@@ -45,7 +45,7 @@ public class EnterpriseToDocument {
 			XMLWriter writer = new XMLWriter(out, format);
 			writer.write(document);
 			writer.flush();
-
+			writer.close();
 			return out.toString();
 		} catch (IOException e) {
 			throw new RuntimeException("IOException while generating textual " + "representation: " + e.getMessage());
