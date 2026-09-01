@@ -9,8 +9,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.editors,
  org.eclipse.ui.views,
- org.eclipse.pde,
- org.eclipse.pde.ui,
  org.eclipse.jface,
  org.eclipse.core.resources,
  org.eclipse.jface.text,
@@ -18,7 +16,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.e4.ui.workbench,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
- org.eclipse.jdt.ui,
  org.eclipse.ui.console
 Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: com.my.hello.editor.filetree

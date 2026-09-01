@@ -1,6 +1,5 @@
 package com.my.hello.editor.filetree.model.ui;
 
-import org.eclipse.jdt.internal.ui.JavaPluginImages;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -9,7 +8,6 @@ import org.eclipse.ui.PlatformUI;
 
 import com.my.hello.editor.filetree.model.INode;
 
-@SuppressWarnings("restriction")
 public class NodeLabelProvider extends LabelProvider {
 	private ImageDescriptor foldImageDescriptor;
 	private ImageDescriptor classDescriptor;
@@ -17,7 +15,8 @@ public class NodeLabelProvider extends LabelProvider {
 	{
 		foldImageDescriptor = PlatformUI.getWorkbench().getSharedImages()
 				.getImageDescriptor(ISharedImages.IMG_OBJ_FOLDER);
-		classDescriptor = JavaPluginImages.getDescriptor(org.eclipse.jdt.ui.ISharedImages.IMG_OBJS_CLASS);
+		classDescriptor = PlatformUI.getWorkbench().getSharedImages()
+				.getImageDescriptor(ISharedImages.IMG_OBJ_FILE);
 	}
 
 	@Override
